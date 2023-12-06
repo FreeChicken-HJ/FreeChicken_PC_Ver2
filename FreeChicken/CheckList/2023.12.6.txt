@@ -1,0 +1,10 @@
+// H.ver
+1. HouseScene 이지모드/하드모드 나누기 (o)
+2. HouseScenePlayer2는 Rigid사용해서 움직이게 하기 (o)
+3. LoadingScene 레벨디자인하기(진행중) + 로딩씬스크립트 좀 더 수정
+4. StartScene_Final 수정하기
+5. Cave씬 하드/이지모드 나누기 (진행중)
+
+- 해야할 것
+- 모든 레벨 UI 알맞게 조정 및 맞추기
+- DieCanvas 영어/한국어 버전 나누기
