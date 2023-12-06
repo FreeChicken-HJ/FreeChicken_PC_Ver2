@@ -8,3 +8,11 @@
 - 해야할 것
 - 모든 레벨 UI 알맞게 조정 및 맞추기
 - DieCanvas 영어/한국어 버전 나누기
+
+// J.ver
+1. Factory_123 Scene Hard,Easy 전체 수정(o)
+2. Start & Ending Scene 전체 수정(o)
+3. 2DEnterScene 수정 (o)
+4. 2DEnterScene Easy & Hard 설정 필
+5. FileSystem 수정 ( Easy & Hard File 따로 설정) & 코드 전면 수정 필
+   5-1. LoadSceneInfo 함수 전면 수정 필 (최적화)
