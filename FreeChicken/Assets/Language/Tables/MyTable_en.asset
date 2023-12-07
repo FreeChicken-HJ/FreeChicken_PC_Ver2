@@ -1,0 +1,275 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: MyTable_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 43439e9d3726bad4482dbe87d9b60d7f, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 6879290521237585920
+  m_TableData:
+  - m_Id: 408735858688
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 599937400832
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 693684289536
+    m_Localized: Controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 779315200000
+    m_Localized: Reset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1382456115200
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2831332294656
+    m_Localized: Move
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2938131857408
+    m_Localized: Interaction
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3094914940928
+    m_Localized: Jump
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3158991323136
+    m_Localized: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3316160282624
+    m_Localized: Skip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3435442094080
+    m_Localized: Controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3619156803584
+    m_Localized: Ps. In the game, 'Exit' and 'ReStart' are shortcuts to going back
+      to the beginning!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4841817391104
+    m_Localized: 'All information will be deleted.
+
+      Are you sure you want to
+      delete all information?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5211243298816
+    m_Localized: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5263886008320
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5750236528640
+    m_Localized: Are you sure you want to quit the game?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6079694913536
+    m_Localized: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6128776658944
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9375117623296
+    m_Localized: Korean
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9450199859200
+    m_Localized: English
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9700222320640
+    m_Localized: BGM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9750553968640
+    m_Localized: SFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 79090225659904
+    m_Localized: 'Obtained Walking Ability (SHIFT) + Mouse Rotation Ability!
+
+      Use
+      these abilities to escape from the house!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 80904698347520
+    m_Localized: Get Memory!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81697115619328
+    m_Localized: Push Bell
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82039555375104
+    m_Localized: Saving location. . .
+    m_Metadata:
+      m_Items: []
+  - m_Id: 376270379433984
+    m_Localized: I need to go up!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 378026081533952
+    m_Localized: Squawk. . .I got caught. . .
+    m_Metadata:
+      m_Items: []
+  - m_Id: 379224163500032
+    m_Localized: 'Phew!
+
+      I fooled the humans nicely!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 379971311648768
+    m_Localized: Stop the conveyor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 380699988082688
+    m_Localized: I can change seats!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 381110224568320
+    m_Localized: Confirmed in 3 seconds!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 381716880310272
+    m_Localized: I can transform into an egg!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 385053352673280
+    m_Localized: Squawk! The path is blocked. . .!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 385110818832384
+    m_Localized: Let's take the side road!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 387206079201280
+    m_Localized: 'Let''s create a path(       key to change the route
+
+      key
+      to confirm'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 388575980830720
+    m_Localized: Confirm!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 389411364552704
+    m_Localized: 'Check the memory!
+
+      You need 4 memories to escape!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 391831670898688
+    m_Localized: Finally, it's an escape!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 392145799102464
+    m_Localized: 'Speed + Jump UP!
+
+      Let''s find the last memory and escape!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393178432552960
+    m_Localized: Get on the truck
+    m_Metadata:
+      m_Items: []
+  - m_Id: 400162414280704
+    m_Localized: Evolved!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 402431344001024
+    m_Localized: You need a key to open the door
+    m_Metadata:
+      m_Items: []
+  - m_Id: 402808890081280
+    m_Localized: The key to saving Dad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 403700242595840
+    m_Localized: Now I can open the door
+    m_Metadata:
+      m_Items: []
+  - m_Id: 404129160511488
+    m_Localized: The body moves in reverse. . .
+    m_Metadata:
+      m_Items: []
+  - m_Id: 404525241221120
+    m_Localized: "I saved Dad! \nLet's go behind Dad and spread out to find Mom!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 405629244948480
+    m_Localized: 'I got the key
+
+      Let''s go rescue Dad'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 405952462209024
+    m_Localized: "We safely escaped with Dad! \nLet's go find Mom!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 406401298874368
+    m_Localized: "Gain the dash ability! Press X to speed up! \nLet's use the ability
+      to escape the cave!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 407142650494976
+    m_Localized: 'Son. . .at this slow pace, we won''t make it out. . .!
+
+      Squawk.
+      . .!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 409696872579072
+    m_Localized: 'Son. . . leaving me behind. . .
+
+      Squawk!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 410448135340032
+    m_Localized: 'Oh my. . .
+
+      They are kissing each other happily. . .Now,
+      both of you, stop kissing and come with me, please!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1430859594706944
+    m_Localized: "There's a car over there! \nLet's get on it right away!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30815550658461696
+    m_Localized: You. . . Die. . . Try. . . Again. . .
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 6879290521237585920
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 00400ec7cb1d0000

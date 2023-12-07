@@ -1,0 +1,16 @@
+// H.ver
+1. DieCanvas 영어/한국어 버전 나누기 (o)
+2. Cave씬 하드/이지모드 나누기 (이지모드 초시계20초로 늘리고 장애물 느리고 작게 쉽게 배치완 + 하드버전에서는 투명벽 안된부분 추가하고 반대로움직이는 물약 2개 더 배치완)  -> (구름다리만 좀 더 수정 + hard버전 boxcollider로 맞추기)
+3. StartScene_Final 수정하기
+4. LoadingScene 레벨디자인하기(진행중) + 로딩씬스크립트 좀 더 수정
+
+- 해야할 것
+- 모든 레벨 UI 알맞게 조정 및 맞추기 (12.11 진아랑 같이 진행하기)
+
+// J.ver
+1. Factory_123 Scene Hard,Easy 전체 수정(o)
+2. Start & Ending Scene 전체 수정(o)
+3. 2DEnterScene 수정 (o)
+4. 2DEnterScene Easy & Hard 설정 필
+5. FileSystem 수정 ( Easy & Hard File 따로 설정) & 코드 전면 수정 필
+   5-1. LoadSceneInfo 함수 전면 수정 필 (최적화)
