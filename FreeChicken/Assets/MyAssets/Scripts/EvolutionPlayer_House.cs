@@ -33,6 +33,7 @@ public class EvloutionPlayer : MonoBehaviour
     bool isJump;
     bool isDead;
     public bool isMove;
+    public bool isEasy;
     
     [Header("Camera")]
     public CinemachineVirtualCamera mainCam;
@@ -161,50 +162,18 @@ public class EvloutionPlayer : MonoBehaviour
 
         if (other.gameObject.name == "GoCitySense")
         {
-            //isTalk2 = true;
-            /*GameSave.Level = 3;
-            GameSave.isCity = true;
-            PlayerData playerData = new PlayerData();
-            playerData.LevelChk = GameSave.Level;
-            string json = JsonUtility.ToJson(playerData);
-
-            File.WriteAllText("playerData.json", json);
-
-            PlayerPrefs.SetInt("GoCity", GameSave.isCity ? 1 : 0);
-
-*/
-            GameSave.Level = 3;
-            if (File.Exists("PlayerData.json"))
+           
+            if (isEasy)
             {
+                GameSave.EasyLevel = 3;
 
-                string jsonData = File.ReadAllText("playerData.json");
-                PlayerData loadedData = JsonUtility.FromJson<PlayerData>(jsonData);
-
-                if (loadedData.LevelChk >= GameSave.Level)
-                {
-                    GameSave.Level = loadedData.LevelChk;
-                }
-                else
-                {
-                    GameSave.Level = 3;
-                }
+                LoadingSceneManager.LoadScene("Enter2DScene_Easy");
             }
             else
             {
-                GameSave.Level = 3;
+                GameSave.HardLevel = 3;
+                LoadingSceneManager.LoadScene("Enter2DScene_Hard");
             }
-            PlayerData playerData = new PlayerData();
-            playerData.LevelChk = GameSave.Level;
-
-
-            string json = JsonUtility.ToJson(playerData);
-
-            File.WriteAllText("playerData.json", json);
-
-            LoadSceneInfo.is2DEnterScene = true;
-            PlayerPrefs.SetInt("Scene2D", LoadSceneInfo.is2DEnterScene ? 1 : 0);
-            LoadSceneInfo.LevelCnt = 2;
-            SceneManager.LoadScene("LoadingScene");
         }
     }
 
