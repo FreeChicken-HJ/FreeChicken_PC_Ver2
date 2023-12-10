@@ -221,7 +221,7 @@ public class HouseScene2_Player : MonoBehaviour
         else if (!isTalkEnd1)
         {
             rigid.MovePosition(ResPawnPos2);
-            //this.gameObject.transform.position = Pos.gameObject.transform.position;
+            //this.gameObject.transform.position = pos.gameObject.transform.position;
         }
        
         DiePs.gameObject.SetActive(false);

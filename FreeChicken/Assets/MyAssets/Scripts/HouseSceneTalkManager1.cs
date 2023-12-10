@@ -108,7 +108,7 @@ public class HouseSceneTalkManager1 : MonoBehaviour
             isTyping = false;
         }
 
-        if (Input.GetMouseButton(0) || Input.GetKeyDown(KeyCode.Space) && !isTyping)
+        if (Input.GetKeyDown(KeyCode.Space) && !isTyping)
         {
             if (!isTyping)
             {
@@ -116,6 +116,30 @@ public class HouseSceneTalkManager1 : MonoBehaviour
                 ChangeImage();
                 ClickSound.Play();
             }
+        }
+    }
+    private void FixedUpdate()
+    {
+
+        Cursor.visible = true;
+        player.isTalk = true;
+        
+
+    }
+    public void OnClick()
+    {
+        if (!isTyping)
+        {
+
+            NextSentence();
+            ClickSound.Play();
+            if (sentences.Count == 0)
+            {
+                NpcImage.SetActive(false);
+                PlayerImage.SetActive(false);
+            }
+            ChangeImage();
+
         }
     }
 }

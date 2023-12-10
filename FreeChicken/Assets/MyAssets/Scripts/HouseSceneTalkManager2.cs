@@ -69,6 +69,7 @@ public class HouseSceneTalkManager2 : MonoBehaviour
             nextText.SetActive(false);
             TalkSound.Play();
             StartCoroutine(Typing(currentSentences));
+           
         }
 
         if (sentences.Count == 0)
@@ -126,20 +127,44 @@ public class HouseSceneTalkManager2 : MonoBehaviour
             nextText.SetActive(true);
             isTyping = false;
         }
-
-        if (Input.GetMouseButton(0) && !isTyping || Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !isTyping)
         {
-            if (!isTyping)
+            NextSentence();
+            ClickButtonSound.Play();
+            if (sentences.Count == 0)
             {
-                NextSentence();
-                ClickButtonSound.Play();
-                if (sentences.Count == 0)
-                {
-                    NpcImage.SetActive(false);
-                    PlayerImage.SetActive(false);
-                }
-                ChangeImage();
+                NpcImage.SetActive(false);
+                PlayerImage.SetActive(false);
             }
+            ChangeImage();
+
+        }
+       
+
+    }
+    private void FixedUpdate()
+    {
+        
+            Cursor.visible = true;
+            player.isTalk1 = true;
+            player.isTalk2 = true;
+        
+
+    }
+    public void OnClick()
+    {
+        if (!isTyping)
+        {
+
+            NextSentence();
+            ClickButtonSound.Play();
+            if (sentences.Count == 0)
+            {
+                NpcImage.SetActive(false);
+                PlayerImage.SetActive(false);
+            }
+            ChangeImage();
+
         }
     }
 }

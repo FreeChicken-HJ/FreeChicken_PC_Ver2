@@ -1,0 +1,67 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SpawnCar : MonoBehaviour
+{
+    // Start is called before the first frame update
+    public float carSpeed;
+
+    bool attackPlayer;
+
+
+    void Update()
+    {
+        Move();
+
+    }
+    // Update is called once per frame
+    void Move()
+    {
+        if (!attackPlayer)
+        {
+            transform.Translate(Vector3.forward * carSpeed * Time.deltaTime);
+
+        }
+    }
+    /*  IEnumerator Move()
+      {
+          yield return new WaitForSeconds(.1f);
+
+
+          if (!attackPlayer)
+          {
+              transform.Translate(Vector3.right * carSpeed * Time.deltaTime);
+
+          }
+          yield return new WaitForSeconds(2f);
+
+
+
+          Instantiate(this.gameObject, curPosition, rotation);
+
+
+          //yield return new WaitForSeconds(1f);
+          Destroy(this.gameObject);
+      }*/
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            attackPlayer = true;
+            this.gameObject.SetActive(false);
+            //Destroy(this.gameObject, 1f);
+        }
+
+
+    }
+   /* void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "CarDestroy")
+        {
+            
+            Destroy(this.gameObject);
+            
+        }
+    }*/
+}
