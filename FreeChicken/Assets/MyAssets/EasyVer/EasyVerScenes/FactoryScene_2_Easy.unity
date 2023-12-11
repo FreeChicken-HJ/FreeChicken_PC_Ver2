@@ -5610,12 +5610,12 @@ PrefabInstance:
     - target: {fileID: 54046837422423044, guid: eecf65e76e21cf240be1a476aa5789f8,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.000000008368215
+      value: -0.000000008368211
       objectReference: {fileID: 0}
     - target: {fileID: 54046837422423044, guid: eecf65e76e21cf240be1a476aa5789f8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.000000001996976
+      value: -0.0000000019969748
       objectReference: {fileID: 0}
     - target: {fileID: 54046837422423044, guid: eecf65e76e21cf240be1a476aa5789f8,
         type: 3}
@@ -26559,7 +26559,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1094530727}
-  m_LocalRotation: {x: 0.1327105, y: -0.000000029538716, z: 0.000000003955081, w: 0.99115485}
+  m_LocalRotation: {x: 0.13271053, y: -0.000000014769362, z: 0.0000000019775415, w: 0.99115485}
   m_LocalPosition: {x: -16.71721, y: 0.75906277, z: 9.185625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -53171,6 +53171,11 @@ PrefabInstance:
       propertyPath: dieCam
       value: 
       objectReference: {fileID: 774132098}
+    - target: {fileID: 2075044644185599692, guid: 60c2e8e7710370b428eaf89c582f3683,
+        type: 3}
+      propertyPath: isEasy
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2075044644185599692, guid: 60c2e8e7710370b428eaf89c582f3683,
         type: 3}
       propertyPath: jumpPs
