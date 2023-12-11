@@ -20,7 +20,7 @@ MonoBehaviour:
     - rid: 6879290521237585920
   m_TableData:
   - m_Id: 408735858688
-    m_Localized: Play
+    m_Localized: Easy
     m_Metadata:
       m_Items: []
   - m_Id: 599937400832
@@ -36,7 +36,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1382456115200
-    m_Localized: Settings
+    m_Localized: Option
     m_Metadata:
       m_Items: []
   - m_Id: 2831332294656
@@ -264,6 +264,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 30815550658461696
     m_Localized: You. . . Die. . . Try. . . Again. . .
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31109908146307072
+    m_Localized: Hard
     m_Metadata:
       m_Items: []
   references:

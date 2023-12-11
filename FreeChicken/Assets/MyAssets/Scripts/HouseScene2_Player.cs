@@ -42,6 +42,8 @@ public class HouseScene2_Player : MonoBehaviour
     public GameObject DestroyObj;
     public GameObject UnicycleObj;
     public GameObject LineObj;
+    public GameObject portal;
+    public GameObject npcPs;
 
     [Header("Camera")]
     public CinemachineVirtualCamera npc_cam;
@@ -56,6 +58,7 @@ public class HouseScene2_Player : MonoBehaviour
     public AudioSource savePointAudio;
     public AudioSource trumpetAudio;
     public AudioSource duckAudio;
+    public AudioSource windAudio;
 
     [Header("Dialogue")]
     public GameObject npcDialogue1;
@@ -74,7 +77,6 @@ public class HouseScene2_Player : MonoBehaviour
     private float rotationTimer = 0.0f;
     private float rotationDuration = 3.0f;
     
-
     void Awake()
     {
         mainAudio.Play();
@@ -123,41 +125,13 @@ public class HouseScene2_Player : MonoBehaviour
         {
             if (this.transform.position.y <= -100f && !isDead)
             {
-                isDead = true;
+                //isDead = true;
                 DieMotion();
                 Invoke("ReLoadScene", 2f);
             }
             yield return null;
         }
     }
-
-    //void Update()
-    //{
-    //    if(this.gameObject.transform.position.y <= -100f && !isDead)
-    //    {
-    //        isDead = true;
-    //        DieMotion();
-    //        Invoke("ReLoadScene", 2f);
-    //    }
-
-    //    if (!isDead)
-    //    {
-    //        if (!isTalk1 || !isTalk2)
-    //        {
-    //            if (isRotating)
-    //            {
-    //                HandleCameraRotation();
-    //            }
-    //            else
-    //            {
-    //                Move();
-    //                GetInput();
-    //                Jump();
-    //                LookAround();
-    //            }
-    //        }
-    //    }
-    //}
 
     void GetInput()
     {
@@ -180,7 +154,6 @@ public class HouseScene2_Player : MonoBehaviour
                 Vector3 moveVec = lookForward * moveInput.y + lookRight * moveInput.x;
 
                 characterBody.forward = moveVec;
-                //transform.position += moveVec * speed * (wDown ? 0.3f : 1f) * Time.deltaTime;
                 rigid.MovePosition(transform.position + moveVec * speed * Time.deltaTime);
                 runAudio.Play();
             }
@@ -202,6 +175,7 @@ public class HouseScene2_Player : MonoBehaviour
 
     void DieMotion()
     {
+        isDead = true;
         DiePs.gameObject.SetActive(true);
         dieCanvas.gameObject.SetActive(true);
         anim.SetTrigger("isDead");
@@ -216,14 +190,11 @@ public class HouseScene2_Player : MonoBehaviour
         if (isTalkEnd1)
         {
             rigid.MovePosition(ResPawnPos1);
-            //this.gameObject.transform.position = Pos2.gameObject.transform.position;
         }
         else if (!isTalkEnd1)
         {
             rigid.MovePosition(ResPawnPos2);
-            //this.gameObject.transform.position = pos.gameObject.transform.position;
         }
-       
         DiePs.gameObject.SetActive(false);
         dieCanvas.gameObject.SetActive(false);
     }
@@ -235,10 +206,17 @@ public class HouseScene2_Player : MonoBehaviour
             isFallingObstacle = true;
         }
 
+        if(other.gameObject.name == "Portal")
+        {
+            portal.SetActive(false);
+            windAudio.Play();
+        }
+
         if (other.gameObject.CompareTag("NPC") && !isTalk1 && !isTalkEnd1 && !PlayerData.isEnglish)
         {
             isTalk1 = true;
             npcDialogue1.SetActive(true);
+            npcPs.SetActive(false);
             anim.SetBool("Walk", false);
             anim.SetBool("Run", false);
             backyardDoor.SetActive(false);
@@ -250,6 +228,7 @@ public class HouseScene2_Player : MonoBehaviour
         {
             isTalk1 = true;
             npcDialogue2.SetActive(true);
+            npcPs.SetActive(false);
             anim.SetBool("Walk", false);
             anim.SetBool("Run", false);
             backyardDoor.SetActive(false);
@@ -263,7 +242,8 @@ public class HouseScene2_Player : MonoBehaviour
             unicycleDialogue1.SetActive(true);
             anim.SetBool("Walk", false);
             anim.SetBool("Run", false);
-            //DestroyObj.SetActive(false);
+            DestroyObj.SetActive(false);
+            LineObj.SetActive(true);
             unicycleCam.Priority = 10;
             mainCam.Priority = 1;
             Invoke("UnicycleObj_Destroy", 1.5f);
@@ -275,7 +255,8 @@ public class HouseScene2_Player : MonoBehaviour
             unicycleDialogue2.SetActive(true);
             anim.SetBool("Walk", false);
             anim.SetBool("Run", false);
-            //DestroyObj.SetActive(false);
+            DestroyObj.SetActive(false);
+            LineObj.SetActive(true);
             unicycleCam.Priority = 10;
             mainCam.Priority = 1;
             Invoke("UnicycleObj_Destroy", 1.5f);
@@ -286,15 +267,13 @@ public class HouseScene2_Player : MonoBehaviour
             trumpetAudio.Play();
             StartRotation();
             LineObj.SetActive(true);
-            mainCam.gameObject.SetActive(false);
             Invoke("Destroy_", 2f);
         }
     }
 
     void Destroy_()
     {
-        //Destroy(this.gameObject);
-        this.gameObject.SetActive(false);
+        Destroy(this.gameObject);
         
         evolutionPlayer.SetActive(true);
         evolutionSense.SetActive(false);
@@ -304,10 +283,13 @@ public class HouseScene2_Player : MonoBehaviour
     {
         rotationTimer += Time.deltaTime;
 
-        float rotationAngle = Mathf.Lerp(0f, 720f, rotationTimer / rotationDuration); 
+        float rotationAngle = Mathf.Lerp(0f, 720f, rotationTimer / rotationDuration);
 
-        cameraArm.RotateAround(transform.position, Vector3.up, rotationAngle * Time.deltaTime);
-        evoluPs.SetActive(true);
+        if (rotationAngle != 0f)  // 회전이 발생했을 때만 처리
+        {
+            cameraArm.RotateAround(transform.position, Vector3.up, rotationAngle * Time.deltaTime);
+            evoluPs.SetActive(true);
+        }
 
         if (rotationTimer >= rotationDuration)
         {

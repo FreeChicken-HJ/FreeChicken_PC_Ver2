@@ -16,7 +16,7 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: 43439e9d3726bad4482dbe87d9b60d7f
   m_Entries:
   - m_Id: 408735858688
-    m_Key: StartScene_Final_Play
+    m_Key: StartScene_Final_Play_Easy
     m_Metadata:
       m_Items: []
   - m_Id: 599937400832
@@ -233,6 +233,12 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 30815550658461696
     m_Key: 'DieCanvas_Txt
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31109908146307072
+    m_Key: 'StartScene_Final_Play_Hard
 
 '
     m_Metadata:
