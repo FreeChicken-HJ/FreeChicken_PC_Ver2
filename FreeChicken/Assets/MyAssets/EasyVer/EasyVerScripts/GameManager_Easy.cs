@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 
-public class GameManager_Easy: MonoBehaviour
+public class GameManager_Easy : MonoBehaviour
 {
     FactoryPlayer factoryPlayer1;
     FactoryPlayer_2 factoryPlayer2;
@@ -15,11 +15,9 @@ public class GameManager_Easy: MonoBehaviour
     CityScenePlayer cityPlayer;
     CaveScenePlayer cavePlayer;
 
-
     public GameObject menuSet;
     public AudioSource ClickButtonAudio;
    
-    
     public bool isStartScene;
     public bool isFactory_1;
     public bool isFactory_2;
@@ -69,7 +67,6 @@ public class GameManager_Easy: MonoBehaviour
             PlayerData loadedData = JsonUtility.FromJson<PlayerData>(jsonData);
 
             isEnglish = loadedData.isEng;
-            
         }
 
         if (isEnglish)
@@ -96,12 +93,10 @@ public class GameManager_Easy: MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel") && !isLoading && !isStart)
         {
-
             ClickButtonAudio.Play();
             Cursor.visible = true;
             if(factoryPlayer1 != null)
             {
-
                 menuSet.SetActive(true);
                 factoryPlayer1.mainAudio.Pause();
                 factoryPlayer1.runAudio.Pause();
@@ -181,35 +176,23 @@ public class GameManager_Easy: MonoBehaviour
                 
             }
         }
-       
-
     }
 
     public void SetKorean()
     {
-
-       
         PlayerData.isEnglish = false;
-       
     }
     public void SetEnglish()
     {
-
-        
         PlayerData.isEnglish = true;
-  
     }
     public void MainUIControlExit()
     {
-
-          mainUI.SetActive(false);
-        
-
-
+        mainUI.SetActive(false);
     }
+
     public void ContinueGame()
     {
-       
         menuSet.SetActive(false);
         Time.timeScale = 1;
 
@@ -271,7 +254,6 @@ public class GameManager_Easy: MonoBehaviour
       
         else if (isMain)
         {
-
             if (MainBGM != null)
             {
                 //Cursor.visible = true;
@@ -282,7 +264,6 @@ public class GameManager_Easy: MonoBehaviour
   
     public void GameExit()
     {
-
         Application.Quit();
     }
     /*public void Enter()
@@ -319,8 +300,7 @@ public class GameManager_Easy: MonoBehaviour
         }*//*
     }*/
     public void Enter2dScene()
-    {
-
+    { 
         Time.timeScale = 1f;
         MemoryCount.memCount = 0;
 
@@ -336,14 +316,13 @@ public class GameManager_Easy: MonoBehaviour
     {
         Time.timeScale = 1f;
         // ¼öÁ¤ ÇÊ 12.9
-        //SceneManager.LoadScene("StartScene_Final");
+        LoadingSceneManager.LoadScene("StartScene");
     }
     public void StartScene2()
     {
-        
         Invoke("StartRealScene2", 0.35f);
-        
     }
+
     public void StartRealScene2()
     {
         if (File.Exists("PlayerData_Easy.json"))
@@ -358,7 +337,6 @@ public class GameManager_Easy: MonoBehaviour
         }
         else
         {
-
             if (isEnglish)
             {
                 if (LocaleManager != null)
@@ -394,10 +372,8 @@ public class GameManager_Easy: MonoBehaviour
         string json = JsonUtility.ToJson(playerData);
 
         File.WriteAllText("PlayerData_Easy.json", json);
-
-
-        
     }
+
     public void ReSetEveryThing()
     {
         isEnglish = true;
@@ -433,6 +409,7 @@ public class GameManager_Easy: MonoBehaviour
     {
         if(WarnningUI != null) WarnningUI.SetActive(true);
     }
+
     public void WarnningExit()
     {
         WarnningUI.SetActive(false);
@@ -445,12 +422,13 @@ public class GameManager_Easy: MonoBehaviour
     public void ExitShow()
     {
         if (ExitUI != null) ExitUI.SetActive(true);
-       
     }
+
     public void ExitEnd()
     {
         ExitUI.SetActive(false);
     }
+
     public void ReplayGame()
     {
         Time.timeScale = 1f;
@@ -486,11 +464,11 @@ public class GameManager_Easy: MonoBehaviour
         }
         else if (isCity)
         {
-            SceneManager.LoadScene("CityScene_Easy");
+            LoadingSceneManager.LoadScene("CityScene_Easy");
         }
         else if (isCave)
         {
-            SceneManager.LoadScene("CaveScene_Easy");
+            LoadingSceneManager.LoadScene("CaveScene_Easy");
         }
     }
 

@@ -9,10 +9,13 @@ public class LoadingSceneManager : MonoBehaviour
     public static string nextScene;
     [SerializeField] Image progressBar;
     [SerializeField] CharacterLoading characterLoading;
+    public Material[] newSkyBox;
 
     private void Start()
     {
         StartCoroutine(LoadScene());
+        int ranSkyRange = Random.Range(0, newSkyBox.Length);
+        RenderSettings.skybox = newSkyBox[ranSkyRange];
     }
 
     public static void LoadScene(string sceneName)
@@ -45,7 +48,7 @@ public class LoadingSceneManager : MonoBehaviour
                 characterLoading.SetDestination(progressBar.transform.position);
 
                 progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, 1f, timer);
-                characterLoading.UpdateCharacterMovement(progressBar.fillAmount); 
+                characterLoading.UpdateCharacterMovement(progressBar.fillAmount);
 
                 if (progressBar.fillAmount == 1.0f)
                 {
@@ -53,6 +56,22 @@ public class LoadingSceneManager : MonoBehaviour
                     yield break;
                 }
             }
+            //else
+            //{
+            //    characterLoading.SetDestination(new Vector3(1.99000001f, 2.5f, 0f));
+
+            //    if (!characterLoading.HasReachedDestination())
+            //    {
+            //        progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, 1f, timer);
+            //        characterLoading.UpdateCharacterMovement(progressBar.fillAmount);
+            //    }
+
+            //    if (progressBar.fillAmount == 1.0f)
+            //    {
+            //        op.allowSceneActivation = true;
+            //        yield break;
+            //    }
+            //}
         }
     }
 }

@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 85c676729775c3345a7c7c9425aafbc1, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: e08ba98b4d80e4f4f9ab16c957438faf, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -522,6 +522,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressBar: {fileID: 2127841790}
   characterLoading: {fileID: 633412195}
+  newSkyBox:
+  - {fileID: 2100000, guid: 85c676729775c3345a7c7c9425aafbc1, type: 2}
+  - {fileID: 2100000, guid: 295fc58d4aa6d02419198a8973c05737, type: 2}
+  - {fileID: 2100000, guid: 6c6021d9311d08a4db41c6ad4d93bc0d, type: 2}
+  - {fileID: 2100000, guid: ff91736308224df48878655e334a80cc, type: 2}
+  - {fileID: 2100000, guid: e08ba98b4d80e4f4f9ab16c957438faf, type: 2}
+  - {fileID: 2100000, guid: 01551129be9206c479f26efde19f3a4b, type: 2}
 --- !u!4 &471455464
 Transform:
   m_ObjectHideFlags: 0
@@ -554,8 +561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c779ca437664784196e1c76033d4e16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 3
-  destination: {fileID: 2127784358}
+  movementSpeed: 5
 --- !u!65 &633412196
 BoxCollider:
   m_ObjectHideFlags: 0
