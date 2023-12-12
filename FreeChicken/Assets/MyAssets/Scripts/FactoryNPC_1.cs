@@ -26,6 +26,7 @@ public class FactoryNPC_1 : MonoBehaviour
     public GameObject TalkUI1;
     public GameObject TalkUI2;
     public bool isFin;
+    public bool isEButtonFin;
     public GameObject Wall;
     public GameObject gameManager;
     public GameManager_Easy gameManager_Easy;
@@ -66,6 +67,7 @@ public class FactoryNPC_1 : MonoBehaviour
 
                 E.color = Color.white;
                 player.isTalk1 = true;
+                isEButtonFin = true;
                 Destroy(Ebutton);
                 BGM.Stop();
                 Memory.Play();
@@ -133,7 +135,7 @@ public class FactoryNPC_1 : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Player") && !isEButtonFin)
         {
             npccam.Priority = 100;
             maincam.Priority = 1;
@@ -143,7 +145,7 @@ public class FactoryNPC_1 : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Player") && !isEButtonFin)
         {
             npccam.Priority = 1;
             maincam.Priority = 10;
