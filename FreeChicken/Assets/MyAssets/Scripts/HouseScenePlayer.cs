@@ -370,8 +370,14 @@ public class HouseScenePlayer : MonoBehaviour
 
         if (other.gameObject.name == "NextScenePoint")
         {
-            Invoke("NextScene", 1.5f);
-            
+            if (isEasy)
+            {
+                LoadingSceneManager.LoadScene("HouseScene_2_Easy");
+            }
+            else
+            {
+                LoadingSceneManager.LoadScene("HouseScene_2_Hard");
+            }
         }
 
         if (other.gameObject.CompareTag("Obstacle") && !Dead)
@@ -397,17 +403,7 @@ public class HouseScenePlayer : MonoBehaviour
             }
         }
     }
-    void NextScene()
-    {
-        if (isEasy)
-        {
-            LoadingSceneManager.LoadScene("HouseScene_2_Easy");
-        }
-        else
-        {
-            LoadingSceneManager.LoadScene("HouseScene_2_Hard");
-        }
-    }
+
     void OnTriggerExit(Collider other)
     {
         if(other.CompareTag("Sense"))
