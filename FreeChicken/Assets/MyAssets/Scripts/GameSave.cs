@@ -75,7 +75,7 @@ public class GameSave : MonoBehaviour
     {
         if (isEasy)
         {
-            if(EasyLevel == 1 && !isChk)
+            if(EasyLevel == 0 && !isChk)
             {           
                 ShowParticle_1.Play();                
                 isChk = true;
@@ -110,7 +110,7 @@ public class GameSave : MonoBehaviour
         }
         else
         {
-            if (HardLevel == 1 && !isChk)
+            if (HardLevel == 0 && !isChk)
             {
                 ShowParticle_1.Play();
                 isChk = true;

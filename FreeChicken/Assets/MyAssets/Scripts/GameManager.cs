@@ -61,13 +61,23 @@ public class GameManager : MonoBehaviour
             cityPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<CityScenePlayer>();
             cavePlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<CaveScenePlayer>();
         }
-        
-        if (File.Exists("playerData.json"))
+
+        if (File.Exists("PlayerData_Easy.json"))
         {
-            string jsonData = File.ReadAllText("playerData.json");
+
+            string jsonData = File.ReadAllText("PlayerData_Easy.json");
             PlayerData loadedData = JsonUtility.FromJson<PlayerData>(jsonData);
 
             isEnglish = loadedData.isEng;
+
+        }
+        else if (File.Exists("PlayerData_Hard.json"))
+        {
+            string jsonData = File.ReadAllText("PlayerData_Hard.json");
+            PlayerData loadedData = JsonUtility.FromJson<PlayerData>(jsonData);
+
+            isEnglish = loadedData.isEng;
+
         }
 
         if (isEnglish)
@@ -190,118 +200,12 @@ public class GameManager : MonoBehaviour
     {
           mainUI.SetActive(false);
     }
-
-    public void ContinueGame()
-    {
-        menuSet.SetActive(false);
-        Time.timeScale = 1;
-
-        if (isFactory_1 && factoryPlayer1 != null)
-        {
-            Cursor.visible = false;
-            factoryPlayer1.mainAudio.UnPause();
-            factoryPlayer1.runAudio.UnPause();
-            factoryPlayer1.isTalk = false;
-        }
-        else if (isFactory_2 && factoryPlayer2 != null)
-        {
-            Cursor.visible = false;
-            factoryPlayer2.BGM.UnPause();
-            factoryPlayer2.isTalk = false;
-        }
-        else if (isFactory_3 && factoryPlayer3 != null)
-        {
-            Cursor.visible = false;
-            factoryPlayer3.BGM.UnPause();
-            factoryPlayer3.isTalk = false;
-        }
-        else if (isHouse_1 && housePlayer1 != null)
-        {
-            Cursor.visible = false;
-            housePlayer1.mainAudio.UnPause();
-            housePlayer1.runAudio.UnPause();
-            housePlayer1.isTalk = false;
-        }
-        else if (isHouse_2 && housePlayer2 != null)
-        {
-            Cursor.visible = false;
-            housePlayer2.mainAudio.UnPause();
-            housePlayer2.runAudio.UnPause();
-            housePlayer2.isTalk1 = false;
-            housePlayer2.isTalk2 = false;
-        }
-        else if (isHouse_2 && evolutionPlayer != null)
-        {
-            Cursor.visible = false;
-            evolutionPlayer.mainAudio.UnPause();
-            evolutionPlayer.runAudio.UnPause();
-            evolutionPlayer.isTalk2 = false;
-        }
-        else if (isCity && cityPlayer != null)
-        {
-            Cursor.visible = false;
-            //cityPlayer.BGM.UnPause();
-            cityPlayer.startAudio.UnPause();
-            cityPlayer.isAllStop = false;
-        }
-        else if (isCave && cavePlayer != null)
-        {
-            Cursor.visible = false;
-            cavePlayer.mainAudio.UnPause();
-            cavePlayer.isTalk = false;
-        }
-        else if (isMain)
-        {
-            if (MainBGM != null)
-            {
-                //Cursor.visible = true;
-                MainBGM.UnPause();
-            }
-        }
-    }
   
     public void GameExit()
     {
         Application.Quit();
     }
 
-    public void Enter()
-    {
-        if (isFactory_1)
-        {
-            LoadingSceneManager.LoadScene("Enter2DScene");
-        }
-        else if (isFactory_2)
-        {
-            LoadingSceneManager.LoadScene("Enter2DScene");
-        }
-        else if (isFactory_3)
-        {
-            LoadingSceneManager.LoadScene("Enter2DScene");
-        }
-        else if (isHouse_1)
-        {
-            LoadingSceneManager.LoadScene("Enter2DScene");
-        }
-        else if (isHouse_2)
-        {
-            LoadingSceneManager.LoadScene("Enter2DScene");
-        }
-        else if (isCity)
-        {
-            LoadingSceneManager.LoadScene("Enter2DScene");
-        }
-        else if (isCave)
-        {
-            LoadingSceneManager.LoadScene("Enter2DScene");
-        }
-    }
-    public void Enter2dScene()
-    {
-        Time.timeScale = 1f;
-        MemoryCount.memCount = 0;
-        LoadingSceneManager.LoadScene("Enter2DScene");
-    }
    
     public void AudioSettingScene()
     {
@@ -324,19 +228,23 @@ public class GameManager : MonoBehaviour
     }
     public void StartRealScene2_Easy()
     {
-        if (File.Exists("PlayerData_Easy.json"))
+        PlayerData.isEasyVer = true;
+        
+        if (File.Exists("PlayerData_Easy.json") || File.Exists("PlayerData_Hard.json"))
         {
-            string jsonData = File.ReadAllText("PlayerData_Easy.json");
-            PlayerData loadedData = JsonUtility.FromJson<PlayerData>(jsonData);
+            if (File.Exists("PlayerData_Easy.json"))
+            {
+                string jsonData = File.ReadAllText("PlayerData_Easy.json");
+                PlayerData loadedData = JsonUtility.FromJson<PlayerData>(jsonData);
 
-            GameSave.EasyLevel = loadedData.LevelChk;
-
+                GameSave.EasyLevel = loadedData.LevelChk;
+            }
             LoadingSceneManager.LoadScene("Enter2DScene_Easy");
 
         }
         else
         {
-            if (isEnglish)
+            if (PlayerData.isEnglish)
             {
                 if (LocaleManager != null)
                 {
@@ -344,7 +252,7 @@ public class GameManager : MonoBehaviour
                     LocaleManager.ChangeLocale(0);
                 }
             }
-            else if (!isEnglish)
+            else if (!PlayerData.isEnglish)
             {
                 if (LocaleManager != null)
                 {
@@ -352,20 +260,23 @@ public class GameManager : MonoBehaviour
                     LocaleManager.ChangeLocale(1);
                 }
             }
-
+            LoadingSceneManager.LoadScene("StartSceneShow");
         }
     }
 
     public void StartRealScene2_Hard()
     {
-        if (File.Exists("PlayerData_Hard.json"))
+        PlayerData.isEasyVer = false;
+        if (File.Exists("PlayerData_Hard.json") || File.Exists("PlayerData_Easy.json"))
         {
-            string jsonData = File.ReadAllText("PlayerData_Hard.json");
-            PlayerData loadedData = JsonUtility.FromJson<PlayerData>(jsonData);
+            if (File.Exists("PlayerData_Hard.json"))
+            {
+                string jsonData = File.ReadAllText("PlayerData_Hard.json");
+                PlayerData loadedData = JsonUtility.FromJson<PlayerData>(jsonData);
 
-            GameSave.HardLevel = loadedData.LevelChk;
+                GameSave.HardLevel = loadedData.LevelChk;
 
-
+            }
             LoadingSceneManager.LoadScene("Enter2DScene_Hard");
 
 
@@ -373,7 +284,7 @@ public class GameManager : MonoBehaviour
         else
         {
 
-            if (isEnglish)
+            if (PlayerData.isEnglish)
             {
                 if (LocaleManager != null)
                 {
@@ -381,7 +292,7 @@ public class GameManager : MonoBehaviour
                     LocaleManager.ChangeLocale(0);
                 }
             }
-            else if (!isEnglish)
+            else if (!PlayerData.isEnglish)
             {
                 if (LocaleManager != null)
                 {
@@ -389,28 +300,12 @@ public class GameManager : MonoBehaviour
                     LocaleManager.ChangeLocale(1);
                 }
             }
+            //LoadingSceneManager.LoadScene("StartSceneShow");
             LoadingSceneManager.LoadScene("Enter2DScene_Hard");
 
         }
     }
-    public void Enter2DExit()
-    {
-        PlayerData playerData = new PlayerData();
-        //playerData.LevelChk = GameSave.Level;
-        
-        if (PlayerData.isEnglish)
-        {
-            playerData.isEng = true;
-        }
-        else if(!PlayerData.isEnglish)   
-        {
-            playerData.isEng = false;
-        }
-        string json = JsonUtility.ToJson(playerData);
-
-        File.WriteAllText("playerData.json", json);  
-    }
-
+    
     public void ReSetEveryThing()
     {
         isEnglish = true;
@@ -421,25 +316,29 @@ public class GameManager : MonoBehaviour
             LocaleManager.ChangeLocale(0);
             PlayerData.isEnglish = true;
         }
-        //GameSave.Level = 0;
-
-        if (File.Exists("playerData.json"))
+        GameSave.HardLevel = 0;
+        GameSave.EasyLevel = 0;
+        if (File.Exists("PlayerData_Hard.json"))
         {
-            string jsonData = File.ReadAllText("playerData.json");
-            PlayerData loadedData = JsonUtility.FromJson<PlayerData>(jsonData);
 
-            loadedData.LevelChk = 0;
+            string jsonData_H = File.ReadAllText("PlayerData_Hard.json");
+            PlayerData loadedData_H = JsonUtility.FromJson<PlayerData>(jsonData_H);
+            loadedData_H.LevelChk = 0;
+
         }
-        File.Delete("playerData.json");
-        
-        Debug.Log(isEnglish);
-        Debug.Log("PlayerData" + PlayerData.isEnglish);
+        else if (File.Exists("PlayerData_Easy.json"))
+        {
+
+            string jsonData_E = File.ReadAllText("PlayerData_Easy.json");
+            PlayerData loadedData_E = JsonUtility.FromJson<PlayerData>(jsonData_E);
+            loadedData_E.LevelChk = 0;
+        }
+
+        File.Delete("PlayerData_Hard.json");
+        File.Delete("PlayerData_Easy.json");
     }
    
-    public void Controls()
-    {
-        Control_UI.SetActive(true);
-    }
+    
     public void Warnning()
     {
         if(WarnningUI != null)
@@ -454,11 +353,7 @@ public class GameManager : MonoBehaviour
         WarnningUI.SetActive(false);
         canvasObjs.SetActive(true);
     }
-    public void ControlsExit()
-    {
-        Control_UI.SetActive(false);
-    }
-  
+   
     public void ExitShow()
     {
         if (ExitUI != null)
@@ -472,59 +367,7 @@ public class GameManager : MonoBehaviour
         ExitUI.SetActive(false);
         canvasObjs.SetActive(true);
     }
-    public void ReplayGame()
-    {
-        Time.timeScale = 1f;
-        if (isFactory_1)
-        {
-            MemoryCount.memCount = 0;
-            LoadingSceneManager.LoadScene("FactoryScene_1");
-        }
-        else if (isFactory_2)
-        {
-            if (MemoryCount.memCount >= 2)
-            {
-                MemoryCount.memCount = 2;
-            }
-            LoadingSceneManager.LoadScene("FactoryScene_2");
-        }
-        else if (isFactory_3)
-        {
-            if (MemoryCount.memCount >= 4)
-            {
-                MemoryCount.memCount = 4;
-            }
-            LoadingSceneManager.LoadScene("FactoryScene_3");
-        }
-        else if (isHouse_1)
-        {
-            MemoryCount.memCount = 0;
-            LoadingSceneManager.LoadScene("HouseScene_1_Easy");
-        }
-        else if (isHouse_2)
-        {
-            LoadingSceneManager.LoadScene("HouseScene_2_Easy");
-        }
-        else if (isCity)
-        {
-            LoadingSceneManager.LoadScene("CityScene");
-        }
-        else if (isCave)
-        {
-            LoadingSceneManager.LoadScene("CaveScene_Final");
-        }
-    }
-
-    public void ControlsUI()
-    {
-        if (isMain)
-        {
-            if(mainUI != null)
-            {
-                mainUI.gameObject.SetActive(true);
-            }
-        }
-    }
+   
 
     public void ClickButtonSound()
     {
