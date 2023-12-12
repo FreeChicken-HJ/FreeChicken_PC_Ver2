@@ -101,22 +101,21 @@ public class FactoryUIManager : MonoBehaviour
     }
     void Update()
     {
-
+        /*if (!player.isTalk)
+        {
+            Cursor.visible = true;
+            player.isTalk = true;
+        }*/
         if (text.text.Equals(currentSentences))
         {
             nextText.SetActive(true);
             isTyping = false;
         }
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (!isTyping)
-
-                NextSentence();
+            if (!isTyping) { NextSentence(); }           
             ButtonClickSound.Play();
-        }
-      
-       
+        }     
     }
     public void OnClick()
     {

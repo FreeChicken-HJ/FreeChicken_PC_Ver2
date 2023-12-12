@@ -34,7 +34,7 @@ public class EvloutionPlayer : MonoBehaviour
     bool isDead;
     public bool isMove;
     public bool isEasy;
-    
+    public bool isUnActive;
     [Header("Camera")]
     public CinemachineVirtualCamera mainCam;
     public CinemachineVirtualCamera unicycleCam;
@@ -66,17 +66,15 @@ public class EvloutionPlayer : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         isJump = false;
     }
-
     void Start()
     {
         diePs.gameObject.SetActive(false);
         dieCanvas.gameObject.SetActive(false);
         StartCoroutine(CO_notDead());
     }
-
     IEnumerator CO_notDead()
     {
-        while (!isDead)
+        while (!isDead && !isUnActive)
         {
             if (!isTalk2)
             {

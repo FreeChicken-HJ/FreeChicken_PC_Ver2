@@ -47,33 +47,24 @@ public class GameManager : MonoBehaviour
     public LocaleManager LocaleManager;
 
     public GameObject canvasObjs;
+    string playerData_Easy = "PlayerData_Easy.json";
+    string playerData_Hard = "PlayerData_Hard.json";
 
     void Start()
     {
-        if (GameObject.FindGameObjectWithTag("Player") != null)
-        {
-            factoryPlayer1 = GameObject.FindGameObjectWithTag("Player").GetComponent<FactoryPlayer>();
-            factoryPlayer2 = GameObject.FindGameObjectWithTag("Player").GetComponent<FactoryPlayer_2>();
-            factoryPlayer3 = GameObject.FindGameObjectWithTag("Player").GetComponent<FactoryPlayer_3>();
-            housePlayer1 = GameObject.FindGameObjectWithTag("Player").GetComponent<HouseScenePlayer>();
-            housePlayer2 = GameObject.FindGameObjectWithTag("Player").GetComponent<HouseScene2_Player>();
-            evolutionPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<EvloutionPlayer>();
-            cityPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<CityScenePlayer>();
-            cavePlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<CaveScenePlayer>();
-        }
-
-        if (File.Exists("PlayerData_Easy.json"))
+       
+        if (File.Exists(playerData_Easy))
         {
 
-            string jsonData = File.ReadAllText("PlayerData_Easy.json");
+            string jsonData = File.ReadAllText(playerData_Easy);
             PlayerData loadedData = JsonUtility.FromJson<PlayerData>(jsonData);
 
             isEnglish = loadedData.isEng;
 
         }
-        else if (File.Exists("PlayerData_Hard.json"))
+        else if (File.Exists(playerData_Hard))
         {
-            string jsonData = File.ReadAllText("PlayerData_Hard.json");
+            string jsonData = File.ReadAllText(playerData_Hard);
             PlayerData loadedData = JsonUtility.FromJson<PlayerData>(jsonData);
 
             isEnglish = loadedData.isEng;
@@ -97,92 +88,6 @@ public class GameManager : MonoBehaviour
                 PlayerData.isEnglish = false;
                 LocaleManager = GetComponent<LocaleManager>();
                 LocaleManager.ChangeLocale(1);
-            }
-        }
-    }
-   
-    void Update()
-    {
-        if (Input.GetButtonDown("Cancel") && !isLoading && !isStart)
-        {
-            ClickButtonAudio.Play();
-            Cursor.visible = true;
-
-            if(factoryPlayer1 != null)
-            {
-                menuSet.SetActive(true);
-                factoryPlayer1.mainAudio.Pause();
-                factoryPlayer1.runAudio.Pause();
-                Time.timeScale = 0f;
-                factoryPlayer1.isTalk = true;
-            }
-            else if(factoryPlayer2 != null)
-            {
-                menuSet.SetActive(true);
-                factoryPlayer2.BGM.Pause();
-                Time.timeScale = 0f;
-                factoryPlayer2.isTalk = true;
-            }
-            else if(factoryPlayer3!=null)
-            {
-                menuSet.SetActive(true);
-                factoryPlayer3.BGM.Pause();
-                Time.timeScale = 0f;
-                factoryPlayer3.isTalk = true;
-            }
-            else if(housePlayer1!=null)
-            {
-                menuSet.SetActive(true);
-                housePlayer1.mainAudio.Pause();
-                housePlayer1.runAudio.Pause();
-                Time.timeScale = 0f;
-                housePlayer1.isTalk = true;
-            }
-            else if(housePlayer2!=null)
-            {
-                menuSet.SetActive(true);
-                housePlayer2.mainAudio.Pause();
-                housePlayer2.runAudio.Pause();
-                Time.timeScale = 0f;
-                housePlayer2.isTalk1 = true;
-                housePlayer2.isTalk2 = true;
-                //isHouse_2 = true;
-            }
-            else if(evolutionPlayer!=null)
-            {
-                menuSet.SetActive(true);
-                evolutionPlayer.mainAudio.Pause();
-                evolutionPlayer.runAudio.Pause();
-                Time.timeScale = 0f;
-                evolutionPlayer.isTalk2 = true;
-                //isHouse_2 = true;
-            }
-            else if(cityPlayer!=null)
-            {
-                menuSet.SetActive(true);
-                //cityPlayer.BGM.Pause();
-                cityPlayer.startAudio.Pause();
-                Time.timeScale = 0f;
-                cityPlayer.isAllStop= true;
-                //isCity = true;
-            }
-            else if(cavePlayer!=null)
-            {
-                menuSet.SetActive(true);
-                cavePlayer.mainAudio.Pause();
-                Time.timeScale = 0f;
-                cavePlayer.isTalk= true;
-                //isCave = true;
-            }
-            else if(isMain)
-            {
-                menuSet.SetActive(true);
-                Time.timeScale = 0f;
-                /*if (MainBGM != null)
-                {
-                    MainBGM.Pause();
-                }*/
-                
             }
         }
     }
@@ -230,11 +135,11 @@ public class GameManager : MonoBehaviour
     {
         PlayerData.isEasyVer = true;
         
-        if (File.Exists("PlayerData_Easy.json") || File.Exists("PlayerData_Hard.json"))
+        if (File.Exists(playerData_Easy) || File.Exists(playerData_Hard))
         {
-            if (File.Exists("PlayerData_Easy.json"))
+            if (File.Exists(playerData_Easy))
             {
-                string jsonData = File.ReadAllText("PlayerData_Easy.json");
+                string jsonData = File.ReadAllText(playerData_Easy);
                 PlayerData loadedData = JsonUtility.FromJson<PlayerData>(jsonData);
 
                 GameSave.EasyLevel = loadedData.LevelChk;
@@ -267,19 +172,17 @@ public class GameManager : MonoBehaviour
     public void StartRealScene2_Hard()
     {
         PlayerData.isEasyVer = false;
-        if (File.Exists("PlayerData_Hard.json") || File.Exists("PlayerData_Easy.json"))
+        if (File.Exists(playerData_Hard) || File.Exists(playerData_Easy))
         {
-            if (File.Exists("PlayerData_Hard.json"))
+            if (File.Exists(playerData_Hard))
             {
-                string jsonData = File.ReadAllText("PlayerData_Hard.json");
+                string jsonData = File.ReadAllText(playerData_Hard);
                 PlayerData loadedData = JsonUtility.FromJson<PlayerData>(jsonData);
 
                 GameSave.HardLevel = loadedData.LevelChk;
 
             }
             LoadingSceneManager.LoadScene("Enter2DScene_Hard");
-
-
         }
         else
         {
@@ -300,9 +203,8 @@ public class GameManager : MonoBehaviour
                     LocaleManager.ChangeLocale(1);
                 }
             }
-            //LoadingSceneManager.LoadScene("StartSceneShow");
-            LoadingSceneManager.LoadScene("Enter2DScene_Hard");
-
+            LoadingSceneManager.LoadScene("StartSceneShow");
+           
         }
     }
     
@@ -318,24 +220,24 @@ public class GameManager : MonoBehaviour
         }
         GameSave.HardLevel = 0;
         GameSave.EasyLevel = 0;
-        if (File.Exists("PlayerData_Hard.json"))
+        if (File.Exists(playerData_Hard))
         {
 
-            string jsonData_H = File.ReadAllText("PlayerData_Hard.json");
+            string jsonData_H = File.ReadAllText(playerData_Hard);
             PlayerData loadedData_H = JsonUtility.FromJson<PlayerData>(jsonData_H);
             loadedData_H.LevelChk = 0;
 
         }
-        else if (File.Exists("PlayerData_Easy.json"))
+        else if (File.Exists(playerData_Easy))
         {
 
-            string jsonData_E = File.ReadAllText("PlayerData_Easy.json");
+            string jsonData_E = File.ReadAllText(playerData_Easy);
             PlayerData loadedData_E = JsonUtility.FromJson<PlayerData>(jsonData_E);
             loadedData_E.LevelChk = 0;
         }
 
-        File.Delete("PlayerData_Hard.json");
-        File.Delete("PlayerData_Easy.json");
+        File.Delete(playerData_Hard);
+        File.Delete(playerData_Easy);
     }
    
     

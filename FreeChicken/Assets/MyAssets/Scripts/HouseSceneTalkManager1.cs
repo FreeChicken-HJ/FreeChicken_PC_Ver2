@@ -102,12 +102,7 @@ public class HouseSceneTalkManager1 : MonoBehaviour
 
     void Update()
     {
-        if (!player.isTalk)
-        {
-            Cursor.visible = true;
-            player.isTalk = true;
-
-        }
+       
         if (text.text.Equals(currentSentences))
         {
             nextText.SetActive(true);

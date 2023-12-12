@@ -25,7 +25,7 @@ public class HouseScene2_Player : MonoBehaviour
     bool isJump;
     public bool isFallingObstacle;
     bool isDead;
-   
+    public bool isUnActive;
     [Header("GameObject")]
     public GameObject player;
     public GameObject dieCanvas;
@@ -71,6 +71,7 @@ public class HouseScene2_Player : MonoBehaviour
     public bool isTalk2;
     public bool isTalkEnd2;
 
+
     [Header("Evloution")]
     private bool isRotating = false;
     private Quaternion originalCameraRotation;
@@ -90,11 +91,10 @@ public class HouseScene2_Player : MonoBehaviour
         Cursor.visible = false;
         DiePs.gameObject.SetActive(false);
         dieCanvas.gameObject.SetActive(false);
-        //StartCoroutine(CO_notDead());
-        //StartCoroutine(CO_Dead());
+       
     }
    
-    IEnumerator CO_notDead()
+   /* IEnumerator CO_notDead()
     {
         while (true)
         {
@@ -117,10 +117,10 @@ public class HouseScene2_Player : MonoBehaviour
             }
             yield return null;
         }
-    }
+    }*/
     private void Update()
     {
-        if (!isDead)
+        if (!isDead && !isUnActive)
         {
             if (!isTalk1 || !isTalk2)
             {
@@ -140,19 +140,15 @@ public class HouseScene2_Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (isDead)
+        if (isDead && !isUnActive)
         {
             hAxis = 0;
             vAxis = 0;
             wDown = false;
         }
-        if(isTalk1 || isTalk2)
-        {
-            anim.SetBool("Walk", false);
-            anim.SetBool("Run", false);
-        }
+       
     }
-    IEnumerator CO_Dead()
+   /* IEnumerator CO_Dead()
     {
         while (true)
         {
@@ -165,7 +161,7 @@ public class HouseScene2_Player : MonoBehaviour
             
             yield return null;
         }
-    }
+    }*/
 
     void GetInput()
     {

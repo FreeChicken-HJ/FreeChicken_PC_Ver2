@@ -50,6 +50,7 @@ public class HouseScenePlayer : MonoBehaviour
     public GameObject NextSceneImage;
     public bool isEnglish;
     public bool isEasy;
+    public bool isUnActive;
 
     [Header("Dialogue")]
     public GameObject startCanvas1;
@@ -131,7 +132,7 @@ public class HouseScenePlayer : MonoBehaviour
 
     void Update()
     {
-        if (!Dead)
+        if (!Dead && !isUnActive)
         {
             DiePs.gameObject.SetActive(false);
             anim.SetBool("isDead", false);
@@ -155,12 +156,12 @@ public class HouseScenePlayer : MonoBehaviour
             }
         }
 
-        if (shouldLookAround)
+        if (shouldLookAround && !isUnActive)
         {
             StartCoroutine(HideGetupgrade_textAfterDelay(3f));
         }
 
-        if (!isOpeningDoor && Input.GetButtonDown("E") && isReadyDoorOpen)
+        if (!isOpeningDoor && Input.GetButtonDown("E") && isReadyDoorOpen && !isUnActive)
         {
             isOpeningDoor = true;
             pushBell = true;
@@ -199,12 +200,7 @@ public class HouseScenePlayer : MonoBehaviour
                 PushBell_text.SetActive(false);
                 isReadyDoorOpen = false;
             }
-        }
-        if (isTalk)
-        {
-            anim.SetBool("Run", false);
-            anim.SetBool("Walk", false);
-        }
+        }      
     }
   
     void GetInput()

@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         {
             ChickFam.transform.position -= new Vector3(Pos.transform.position.x, ChickFam.transform.position.y, ChickFam.transform.position.z) * Time.deltaTime * .01f;
             anim.SetBool("Walk", true);
-            transform.position = Vector3.MoveTowards(gameObject.transform.position, targetPosition.transform.position, .01f);
+            transform.position = Vector3.MoveTowards(gameObject.transform.position, targetPosition.transform.position, .03f);
 
         }
 

@@ -122,12 +122,7 @@ public class HouseSceneTalkManager2 : MonoBehaviour
 
     void Update()
     {
-        if(!player.isTalk2 || !player.isTalk1)
-        {
-            Cursor.visible = true;
-            player.isTalk1 = true;
-            player.isTalk2 = true;
-        }
+        
         if (text.text.Equals(currentSentences))
         {
             nextText.SetActive(true);
@@ -143,15 +138,8 @@ public class HouseSceneTalkManager2 : MonoBehaviour
                 PlayerImage.SetActive(false);
             }
             ChangeImage();
-
         }
        
-
-    }
-    private void FixedUpdate()
-    {
-        
-         
     }
     public void OnClick()
     {

@@ -102,24 +102,24 @@ public class GameManager_Easy : MonoBehaviour
                 factoryPlayer1.mainAudio.Pause();
                 factoryPlayer1.runAudio.Pause();
                 Time.timeScale = 0f;
-                factoryPlayer1.isTalk = true;
-                //isFactory_1 = true;
+                factoryPlayer1.isUnActive = true;
+                
             }
             else if(factoryPlayer2 != null)
             {
                 menuSet.SetActive(true);
                 factoryPlayer2.BGM.Pause();
                 Time.timeScale = 0f;
-                factoryPlayer2.isTalk = true;
-                //isFactory_2 = true;
+                factoryPlayer2.isUnActive = true;
+              
             }
             else if(factoryPlayer3!=null)
             {
                 menuSet.SetActive(true);
                 factoryPlayer3.BGM.Pause();
                 Time.timeScale = 0f;
-                factoryPlayer3.isTalk = true;
-                //isFactory_3 = true;
+                factoryPlayer3.isUnActive = true;
+                
             }
             else if(housePlayer1!=null)
             {
@@ -127,8 +127,8 @@ public class GameManager_Easy : MonoBehaviour
                 housePlayer1.mainAudio.Pause();
                 housePlayer1.runAudio.Pause();
                 Time.timeScale = 0f;
-                housePlayer1.isTalk = true;
-                //isHouse_1 = true;
+                housePlayer1.isUnActive = true;
+               
             }
             else if(housePlayer2!=null)
             {
@@ -136,9 +136,7 @@ public class GameManager_Easy : MonoBehaviour
                 housePlayer2.mainAudio.Pause();
                 housePlayer2.runAudio.Pause();
                 Time.timeScale = 0f;
-                housePlayer2.isTalk1 = true;
-                housePlayer2.isTalk2 = true;
-                //isHouse_2 = true;
+                housePlayer2.isUnActive = true;              
             }
             else if(evolutionPlayer!=null)
             {
@@ -146,8 +144,7 @@ public class GameManager_Easy : MonoBehaviour
                 evolutionPlayer.mainAudio.Pause();
                 evolutionPlayer.runAudio.Pause();
                 Time.timeScale = 0f;
-                evolutionPlayer.isTalk2 = true;
-                //isHouse_2 = true;
+                evolutionPlayer.isTalk2 = true;              
             }
             else if(cityPlayer!=null)
             {
@@ -155,26 +152,20 @@ public class GameManager_Easy : MonoBehaviour
                 cityPlayer.bgm.Pause();
                 cityPlayer.startAudio.Pause();
                 Time.timeScale = 0f;
-                cityPlayer.isAllStop= true;
-                //isCity = true;
+                cityPlayer.isAllStop= true;              
             }
             else if(cavePlayer!=null)
             {
                 menuSet.SetActive(true);
                 cavePlayer.mainAudio.Pause();
                 Time.timeScale = 0f;
-                cavePlayer.isTalk= true;
-                //isCave = true;
+                cavePlayer.isUnActive = true;
             }
             else if(isMain)
             {
                 menuSet.SetActive(true);
                 hideObj.SetActive(false);
                 Time.timeScale = 0f;
-                /*if (MainBGM != null)
-                {
-                    MainBGM.Pause();
-                }*/
             }
         }
     }
@@ -205,41 +196,40 @@ public class GameManager_Easy : MonoBehaviour
             Cursor.visible = false;
             factoryPlayer1.mainAudio.UnPause();
             factoryPlayer1.runAudio.UnPause();
-            factoryPlayer1.isTalk = false;
+            factoryPlayer1.isUnActive = false;
         }
         else if (isFactory_2 && factoryPlayer2 != null)
         {
             Cursor.visible = false;
             factoryPlayer2.BGM.UnPause();
-            factoryPlayer2.isTalk = false;
+            factoryPlayer2.isUnActive = false;
         }
         else if (isFactory_3 && factoryPlayer3 != null)
         {
             Cursor.visible = false;
             factoryPlayer3.BGM.UnPause();
-            factoryPlayer3.isTalk = false;
+            factoryPlayer3.isUnActive = false;
         }
         else if (isHouse_1 && housePlayer1 != null)
         {
             Cursor.visible = false;
             housePlayer1.mainAudio.UnPause();
             housePlayer1.runAudio.UnPause();
-            housePlayer1.isTalk = false;
+            housePlayer1.isUnActive = false;
         }
         else if (isHouse_2 && housePlayer2 != null)
         {
             Cursor.visible = false;
             housePlayer2.mainAudio.UnPause();
             housePlayer2.runAudio.UnPause();
-            housePlayer2.isTalk1 = false;
-            housePlayer2.isTalk2 = false;
+            housePlayer2.isUnActive = false;            
         }
         else if (isHouse_2 && evolutionPlayer != null)
         {
             Cursor.visible = false;
             evolutionPlayer.mainAudio.UnPause();
             evolutionPlayer.runAudio.UnPause();
-            evolutionPlayer.isTalk2 = false;
+            evolutionPlayer.isUnActive = false;
         }
         else if (isCity && cityPlayer != null)
         {
@@ -252,56 +242,17 @@ public class GameManager_Easy : MonoBehaviour
         {
             Cursor.visible = false;
             cavePlayer.mainAudio.UnPause();
-            cavePlayer.isTalk = false;
+            cavePlayer.isUnActive = false;
         }
         else if (isMain)
         {
             if (MainBGM != null)
-            {
-                //Cursor.visible = true;
+            {              
                 MainBGM.UnPause();
                 hideObj.SetActive(true);
             }
         }
     }    
-  
-    public void GameExit()
-    {
-        Application.Quit();
-    }
-    /*public void Enter()
-    {
-        LoadingSceneManager.LoadScene("Enter2DScene_Easy");
-       
-       *//* if (isFactory_1)
-        {
-            SceneManager.LoadScene("Enter2DScene");
-        }
-        else if (isFactory_2)
-        {
-            SceneManager.LoadScene("Enter2DScene");
-        }
-        else if (isFactory_3)
-        {
-            SceneManager.LoadScene("Enter2DScene");
-        }
-        else if (isHouse_1)
-        {
-            SceneManager.LoadScene("Enter2DScene");
-        }
-        else if (isHouse_2)
-        {
-            SceneManager.LoadScene("Enter2DScene");
-        }
-        else if (isCity)
-        {
-            SceneManager.LoadScene("Enter2DScene");
-        }
-        else if (isCave)
-        {
-            SceneManager.LoadScene("Enter2DScene");
-        }*//*
-    }*/
     public void Enter2dScene()
     { 
         Time.timeScale = 1f;
@@ -318,7 +269,7 @@ public class GameManager_Easy : MonoBehaviour
     public void StartScene()
     {
         Time.timeScale = 1f;
-        // ¼öÁ¤ ÇÊ 12.9
+        
         LoadingSceneManager.LoadScene("StartScene");
     }
     public void StartScene2()
@@ -374,31 +325,6 @@ public class GameManager_Easy : MonoBehaviour
 
         File.WriteAllText("PlayerData_Easy.json", json);
     }
-
-    public void ReSetEveryThing()
-    {
-        isEnglish = true;
-
-        if (LocaleManager != null)
-        {
-            LocaleManager = GetComponent<LocaleManager>();
-            LocaleManager.ChangeLocale(0);
-            PlayerData.isEnglish = true;
-        }
-        GameSave.EasyLevel = 0;
-
-        if (File.Exists("PlayerData_Easy.json"))
-        {
-            string jsonData = File.ReadAllText("PlayerData_Easy.json");
-            PlayerData loadedData = JsonUtility.FromJson<PlayerData>(jsonData);
-
-            loadedData.LevelChk = 0;
-        }
-        File.Delete("PlayerData_Easy.json");
-        
-        Debug.Log(isEnglish);
-        Debug.Log("PlayerData_Easy" + PlayerData.isEnglish);
-    }
    
     public void Controls()
     {
@@ -406,32 +332,11 @@ public class GameManager_Easy : MonoBehaviour
         Control_UI.SetActive(true);
         menuSet.SetActive(false);
     }
-
-    public void Warnning()
-    {
-        if(WarnningUI != null) WarnningUI.SetActive(true);
-    }
-
-    public void WarnningExit()
-    {
-        WarnningUI.SetActive(false);
-    }
-
     public void ControlsExit()
     {
         Control_UI.SetActive(false);
         hideObj.SetActive(false);
         menuSet.SetActive(true);
-    }
-  
-    public void ExitShow()
-    {
-        if (ExitUI != null) ExitUI.SetActive(true);
-    }
-
-    public void ExitEnd()
-    {
-        ExitUI.SetActive(false);
     }
 
     public void ReplayGame()

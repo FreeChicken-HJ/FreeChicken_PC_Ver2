@@ -31,6 +31,7 @@ public class FactoryPlayer_2 : MonoBehaviour
     public bool isLoading;
     public bool isSavePoint;
     public bool isEasy;
+    public bool isUnActive;
     [Header("Stats")]
     public GameObject stampTmp;
     public GameObject dieCanvas;
@@ -82,7 +83,7 @@ public class FactoryPlayer_2 : MonoBehaviour
     void Update()
     { 
 
-        if (!isTalk && !isDie)
+        if (!isUnActive && !isTalk && !isDie)
         {
             Move();
             GetInput();
@@ -90,7 +91,7 @@ public class FactoryPlayer_2 : MonoBehaviour
             Jump();
             
         }
-        if (changeZone.isButton)
+        if (changeZone.isButton && isUnActive)
         {
             anim.SetBool("isWalk", false);
         }

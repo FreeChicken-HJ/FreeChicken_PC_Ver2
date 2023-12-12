@@ -31,7 +31,6 @@ public class FactoryPlayer_3 : MonoBehaviour
 
     public GameObject StartParticle;
     public LoadingTyping Loading;
-    //public GameState gameState;
     [Header("Camera")]
     public CinemachineVirtualCamera mainCam;
     public CinemachineVirtualCamera changeCam;
@@ -59,7 +58,8 @@ public class FactoryPlayer_3 : MonoBehaviour
     public bool isSavePoint_2;
     public bool isPotion;
     public bool isEasyVer;
-   
+
+    public bool isUnActive;
     [Header("UI")]
     public GameObject startUI;
     public GameObject mainUI;
@@ -137,7 +137,7 @@ public class FactoryPlayer_3 : MonoBehaviour
     void Update()
     {
 
-        if (!isTalk && !isDie && !isAttack&& !isTruckGo && !isPotion)
+        if (!isUnActive && !isTalk && !isDie && !isAttack&& !isTruckGo && !isPotion)
         {
             Move();
             GetInput();

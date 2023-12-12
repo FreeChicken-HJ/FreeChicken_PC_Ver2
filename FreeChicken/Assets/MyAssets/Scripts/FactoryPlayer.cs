@@ -28,6 +28,7 @@ public class FactoryPlayer : MonoBehaviour
     public bool isStamp;
 
     public bool isTalk;
+    public bool isUnActive;
     public bool isEgg;
     public bool isStopSlide;
 
@@ -132,7 +133,7 @@ public class FactoryPlayer : MonoBehaviour
     void Update()
     {
         
-        if (!isTalk && !isEgg && !isDie && !isStart &&!isPickUp &&!isStamp)
+        if (!isUnActive && !isTalk && !isEgg && !isDie && !isStart &&!isPickUp &&!isStamp)
         {
             Move();
             GetInput();
@@ -140,11 +141,11 @@ public class FactoryPlayer : MonoBehaviour
             Jump();
             
         }
-        if (!isTalk && isEgg)
+        if (!isTalk && isEgg && !isUnActive)
         {
             StartCoroutine("Check");
         }
-        if (isTalk && isStamp)
+        if (isTalk && isStamp && isUnActive)
         {
             anim.SetBool("isWalk", false);
         }
