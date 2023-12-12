@@ -6,6 +6,7 @@ using System.IO;
 
 public class GameManager_Easy : MonoBehaviour
 {
+    [Header("Players")]
     FactoryPlayer factoryPlayer1;
     FactoryPlayer_2 factoryPlayer2;
     FactoryPlayer_3 factoryPlayer3;
@@ -15,9 +16,7 @@ public class GameManager_Easy : MonoBehaviour
     CityScenePlayer cityPlayer;
     CaveScenePlayer cavePlayer;
 
-    public GameObject menuSet;
-    public AudioSource ClickButtonAudio;
-   
+    [Header("Bool")]
     public bool isStartScene;
     public bool isFactory_1;
     public bool isFactory_2;
@@ -27,25 +26,27 @@ public class GameManager_Easy : MonoBehaviour
     public bool isCity;
     public bool isCave;
     public bool isMain;
-
     public bool isLoading;
     public bool isStart;
     public bool isEnglish;
-
     public bool is2D;
     public bool isEasyVer;
 
+    [Header("GameObjects")]
+    public GameObject menuSet;
+    public AudioSource ClickButtonAudio;
     public AudioSource MainBGM;
     public AudioSource SFX;
     public GameObject mainUI;
-   
     public GameObject AudioSettingUI;
     public GameObject Control_UI;
     public GameObject WarnningUI;
     public GameObject ExitUI;
     public GameObject LoadingUI;
-   
+    public GameObject hideObj;
+
     public LocaleManager LocaleManager;
+
     void Start()
     {
         if (GameObject.FindGameObjectWithTag("Player") != null)
@@ -168,12 +169,12 @@ public class GameManager_Easy : MonoBehaviour
             else if(isMain)
             {
                 menuSet.SetActive(true);
+                hideObj.SetActive(false);
                 Time.timeScale = 0f;
                 /*if (MainBGM != null)
                 {
                     MainBGM.Pause();
                 }*/
-                
             }
         }
     }
@@ -182,13 +183,16 @@ public class GameManager_Easy : MonoBehaviour
     {
         PlayerData.isEnglish = false;
     }
+
     public void SetEnglish()
     {
         PlayerData.isEnglish = true;
     }
+
     public void MainUIControlExit()
     {
         mainUI.SetActive(false);
+        hideObj.SetActive(true);
     }
 
     public void ContinueGame()
@@ -250,14 +254,13 @@ public class GameManager_Easy : MonoBehaviour
             cavePlayer.mainAudio.UnPause();
             cavePlayer.isTalk = false;
         }
-
-      
         else if (isMain)
         {
             if (MainBGM != null)
             {
                 //Cursor.visible = true;
                 MainBGM.UnPause();
+                hideObj.SetActive(true);
             }
         }
     }    
@@ -333,7 +336,6 @@ public class GameManager_Easy : MonoBehaviour
             GameSave.EasyLevel = loadedData.LevelChk;
 
             LoadingSceneManager.LoadScene("Enter2DScene_Easy");
-              
         }
         else
         {
@@ -353,7 +355,6 @@ public class GameManager_Easy : MonoBehaviour
                     LocaleManager.ChangeLocale(1);
                 }
             }
-        
         }
     }
     public void Enter2DExit()
@@ -388,12 +389,10 @@ public class GameManager_Easy : MonoBehaviour
 
         if (File.Exists("PlayerData_Easy.json"))
         {
-
             string jsonData = File.ReadAllText("PlayerData_Easy.json");
             PlayerData loadedData = JsonUtility.FromJson<PlayerData>(jsonData);
 
             loadedData.LevelChk = 0;
-
         }
         File.Delete("PlayerData_Easy.json");
         
@@ -403,8 +402,11 @@ public class GameManager_Easy : MonoBehaviour
    
     public void Controls()
     {
+        hideObj.SetActive(false);
         Control_UI.SetActive(true);
+        menuSet.SetActive(false);
     }
+
     public void Warnning()
     {
         if(WarnningUI != null) WarnningUI.SetActive(true);
@@ -414,9 +416,12 @@ public class GameManager_Easy : MonoBehaviour
     {
         WarnningUI.SetActive(false);
     }
+
     public void ControlsExit()
     {
         Control_UI.SetActive(false);
+        hideObj.SetActive(false);
+        menuSet.SetActive(true);
     }
   
     public void ExitShow()
@@ -472,16 +477,16 @@ public class GameManager_Easy : MonoBehaviour
         }
     }
 
- /*   public void ControlsUI()
+    public void ControlsUI()
     {
         if (isMain)
         {
-            if(mainUI != null)
+            if (mainUI != null)
             {
                 mainUI.gameObject.SetActive(true);
             }
         }
-    }*/
+    }
 
     public void ClickButtonSound()
     {

@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 
-public class GameManager_Hard : MonoBehaviour
+public class GameManager_Hard: MonoBehaviour
 {
+    [Header("Players")]
     FactoryPlayer factoryPlayer1;
     FactoryPlayer_2 factoryPlayer2;
     FactoryPlayer_3 factoryPlayer3;
@@ -15,39 +16,39 @@ public class GameManager_Hard : MonoBehaviour
     CityScenePlayer cityPlayer;
     CaveScenePlayer cavePlayer;
 
-
-    public GameObject menuSet;
-    public AudioSource ClickButtonAudio;
-   
-    
+    [Header("Bool")]
     public bool isStartScene;
     public bool isFactory_1;
     public bool isFactory_2;
     public bool isFactory_3;
     public bool isHouse_1;
     public bool isHouse_2;
+    public bool isHouse_Player2;
+    public bool isHouse_EvoluPlayer;
     public bool isCity;
     public bool isCave;
     public bool isMain;
-
     public bool isLoading;
     public bool isStart;
     public bool isEnglish;
-
     public bool is2D;
     public bool isEasyVer;
 
+    [Header("GameObjects")]
+    public GameObject menuSet;
+    public AudioSource ClickButtonAudio;
     public AudioSource MainBGM;
     public AudioSource SFX;
     public GameObject mainUI;
-   
     public GameObject AudioSettingUI;
     public GameObject Control_UI;
     public GameObject WarnningUI;
     public GameObject ExitUI;
     public GameObject LoadingUI;
-   
+    public GameObject hideObj;
+
     public LocaleManager LocaleManager;
+
     void Start()
     {
         if (GameObject.FindGameObjectWithTag("Player") != null)
@@ -61,15 +62,12 @@ public class GameManager_Hard : MonoBehaviour
             cityPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<CityScenePlayer>();
             cavePlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<CaveScenePlayer>();
         }
-        
         if (File.Exists("PlayerData_Easy.json"))
         {
-
             string jsonData = File.ReadAllText("PlayerData_Easy.json");
             PlayerData loadedData = JsonUtility.FromJson<PlayerData>(jsonData);
 
             isEnglish = loadedData.isEng;
-            
         }
         else if(File.Exists("PlayerData_Hard.json"))
         {
@@ -77,10 +75,7 @@ public class GameManager_Hard : MonoBehaviour
             PlayerData loadedData = JsonUtility.FromJson<PlayerData>(jsonData);
 
             isEnglish = loadedData.isEng;
-
-        }
-    
-           
+        } 
         if (isEnglish)
         {
             if (LocaleManager != null)
@@ -105,12 +100,10 @@ public class GameManager_Hard : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel") && !isLoading && !isStart)
         {
-
             ClickButtonAudio.Play();
             Cursor.visible = true;
             if(factoryPlayer1 != null)
             {
-
                 menuSet.SetActive(true);
                 factoryPlayer1.mainAudio.Pause();
                 factoryPlayer1.runAudio.Pause();
@@ -143,7 +136,7 @@ public class GameManager_Hard : MonoBehaviour
                 housePlayer1.isTalk = true;
                 //isHouse_1 = true;
             }
-            else if(housePlayer2!=null)
+            else if (housePlayer2 != null)
             {
                 menuSet.SetActive(true);
                 housePlayer2.mainAudio.Pause();
@@ -153,13 +146,13 @@ public class GameManager_Hard : MonoBehaviour
                 housePlayer2.isTalk2 = true;
                 //isHouse_2 = true;
             }
-            else if(evolutionPlayer!=null)
+            else if (evolutionPlayer != null && evolutionPlayer.gameObject != null)
             {
-                menuSet.SetActive(true);
-                evolutionPlayer.mainAudio.Pause();
-                evolutionPlayer.runAudio.Pause();
-                Time.timeScale = 0f;
-                evolutionPlayer.isTalk2 = true;
+                    menuSet.SetActive(true);
+                    evolutionPlayer.mainAudio.Pause();
+                    evolutionPlayer.runAudio.Pause();
+                    Time.timeScale = 0f;
+                    evolutionPlayer.isTalk2 = true;
                 //isHouse_2 = true;
             }
             else if(cityPlayer!=null)
@@ -182,43 +175,33 @@ public class GameManager_Hard : MonoBehaviour
             else if(isMain)
             {
                 menuSet.SetActive(true);
+                hideObj.SetActive(false);
                 Time.timeScale = 0f;
                 /*if (MainBGM != null)
                 {
                     MainBGM.Pause();
                 }*/
-                
             }
         }
-       
-
     }
 
     public void SetKorean()
     {
-
-       
         PlayerData.isEnglish = false;
-       
     }
     public void SetEnglish()
-    {
-
-        
+    { 
         PlayerData.isEnglish = true;
-  
     }
+
     public void MainUIControlExit()
     {
-
-          mainUI.SetActive(false);
-        
-
-
+        mainUI.SetActive(false);
+        hideObj.SetActive(true);
     }
+
     public void ContinueGame()
     {
-       
         menuSet.SetActive(false);
         Time.timeScale = 1;
 
@@ -276,32 +259,29 @@ public class GameManager_Hard : MonoBehaviour
             cavePlayer.mainAudio.UnPause();
             cavePlayer.isTalk = false;
         }
-
-      
         else if (isMain)
         {
-
             if (MainBGM != null)
             {
                 //Cursor.visible = true;
                 MainBGM.UnPause();
+                hideObj.SetActive(true);
             }
         }
     }
       
     public void GameExit()
     {
-
         Application.Quit();
     }
+
     public void Enter()
     {
         LoadingSceneManager.LoadScene("Enter2DScene_Hard");
-      
     }
+
     public void Enter2dScene()
     {
-
         Time.timeScale = 1f;
         MemoryCount.memCount = 0;
 
@@ -318,11 +298,10 @@ public class GameManager_Hard : MonoBehaviour
         Time.timeScale = 1f;
         LoadingSceneManager.LoadScene("StartScene");
     }
+
     public void StartScene_2DEnter()
     {
-        
         Invoke("StartRealScene2", 0.35f);
-        
     }
     public void StartRealScene2()
     {
@@ -332,15 +311,10 @@ public class GameManager_Hard : MonoBehaviour
             PlayerData loadedData = JsonUtility.FromJson<PlayerData>(jsonData);
 
             GameSave.HardLevel = loadedData.LevelChk;
-
-
             LoadingSceneManager.LoadScene("Enter2DScene_Hard");
-           
-          
         }
         else
         {
-
             if (isEnglish)
             {
                 if (LocaleManager != null)
@@ -358,7 +332,6 @@ public class GameManager_Hard : MonoBehaviour
                 }
             }
             LoadingSceneManager.LoadScene("Enter2DScene_Hard");
-           
         }
     }
     public void Enter2DExit()
@@ -377,10 +350,8 @@ public class GameManager_Hard : MonoBehaviour
         string json = JsonUtility.ToJson(playerData);
 
         File.WriteAllText("PlayerData_Hard.json", json);
-
-
-        
     }
+
     public void ReSetEveryThing()
     {
         isEnglish = true;
@@ -406,17 +377,20 @@ public class GameManager_Hard : MonoBehaviour
         }
         File.Delete("PlayerData_Hard.json");
         File.Delete("PlayerData_Easy.json");
-       
     }
    
     public void Controls()
     {
         Control_UI.SetActive(true);
+        hideObj.SetActive(false);
+        menuSet.SetActive(false);
     }
+
     public void Warnning()
     {
         if(WarnningUI != null) WarnningUI.SetActive(true);
     }
+
     public void WarnningExit()
     {
         WarnningUI.SetActive(false);
@@ -424,17 +398,20 @@ public class GameManager_Hard : MonoBehaviour
     public void ControlsExit()
     {
         Control_UI.SetActive(false);
+        hideObj.SetActive(false);
+        menuSet.SetActive(true);
     }
   
     public void ExitShow()
     {
         if (ExitUI != null) ExitUI.SetActive(true);
-       
     }
+
     public void ExitEnd()
     {
         ExitUI.SetActive(false);
     }
+
     public void ReplayGame()
     {
         Time.timeScale = 1f;
@@ -442,7 +419,6 @@ public class GameManager_Hard : MonoBehaviour
         {
             MemoryCount.memCount = 0;
             LoadingSceneManager.LoadScene("FactoryScene_1_Hard");
-            
         }
         else if (isFactory_2)
         {
