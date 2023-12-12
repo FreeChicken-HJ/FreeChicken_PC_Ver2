@@ -49,7 +49,6 @@ public class FactoryNPC_1 : MonoBehaviour
     }
     void Update()
     {
-        
         if (Input.GetButton("E") && isEbutton)
         {
             
@@ -64,7 +63,7 @@ public class FactoryNPC_1 : MonoBehaviour
                 LoadingCheck();
                 isEbutton = false;
                 Video.SetActive(true);
-
+                player.isJump = true;
                 E.color = Color.white;
                 player.isTalk1 = true;
                 isEButtonFin = true;
@@ -90,6 +89,7 @@ public class FactoryNPC_1 : MonoBehaviour
     {
         if (isFin )
         {
+            player.isJump = false;
             Video.SetActive(false);
             maincam.Priority = 2;
             npccam.Priority = -5;         

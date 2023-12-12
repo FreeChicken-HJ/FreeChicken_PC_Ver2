@@ -22,7 +22,7 @@ public class HouseScene2_Player : MonoBehaviour
     [Header("Bool")]
     public bool isMove;
     bool wDown;
-    bool isJump;
+    public bool isJump;
     public bool isFallingObstacle;
     bool isDead;
     public bool isUnActive;

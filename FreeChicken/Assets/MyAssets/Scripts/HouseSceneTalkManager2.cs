@@ -128,18 +128,20 @@ public class HouseSceneTalkManager2 : MonoBehaviour
             nextText.SetActive(true);
             isTyping = false;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && !isTyping)
+        if (Input.GetKeyDown(KeyCode.Space) && !isTyping && sentences.Count > 0)
         {
             NextSentence();
             ClickButtonSound.Play();
+
             if (sentences.Count == 0)
             {
                 NpcImage.SetActive(false);
                 PlayerImage.SetActive(false);
             }
+
             ChangeImage();
         }
-       
+
     }
     public void OnClick()
     {
