@@ -25,7 +25,7 @@ public class HouseScene2_Player : MonoBehaviour
     bool isJump;
     public bool isFallingObstacle;
     bool isDead;
-
+   
     [Header("GameObject")]
     public GameObject player;
     public GameObject dieCanvas;
@@ -90,10 +90,10 @@ public class HouseScene2_Player : MonoBehaviour
         Cursor.visible = false;
         DiePs.gameObject.SetActive(false);
         dieCanvas.gameObject.SetActive(false);
-        StartCoroutine(CO_notDead());
-        StartCoroutine(CO_Dead());
+        //StartCoroutine(CO_notDead());
+        //StartCoroutine(CO_Dead());
     }
-
+   
     IEnumerator CO_notDead()
     {
         while (true)
@@ -118,31 +118,68 @@ public class HouseScene2_Player : MonoBehaviour
             yield return null;
         }
     }
-
+    private void Update()
+    {
+        if (!isDead)
+        {
+            if (!isTalk1 || !isTalk2)
+            {
+                if (isRotating)
+                {
+                    HandleCameraRotation();
+                }
+                else
+                {
+                    Move();
+                    LookAround();
+                    GetInput();
+                    Jump();
+                }
+            }
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (isDead)
+        {
+            hAxis = 0;
+            vAxis = 0;
+            wDown = false;
+        }
+        if(isTalk1 || isTalk2)
+        {
+            anim.SetBool("Walk", false);
+            anim.SetBool("Run", false);
+        }
+    }
     IEnumerator CO_Dead()
     {
         while (true)
         {
-            if (this.transform.position.y <= -100f && !isDead)
+            if (!isDead && this.transform.position.y <= -100f )
             {
-                //isDead = true;
+                isDead = true;
                 DieMotion();
-                Invoke("ReLoadScene", 2f);
+                //Invoke("ReLoadScene", 2f);
             }
+            
             yield return null;
         }
     }
 
     void GetInput()
     {
-        hAxis = Input.GetAxisRaw("Horizontal");
-        vAxis = Input.GetAxisRaw("Vertical");
-        wDown = Input.GetButton("Walk");
+        if (!isDead)
+        {
+            hAxis = Input.GetAxisRaw("Horizontal");
+            vAxis = Input.GetAxisRaw("Vertical");
+            wDown = Input.GetButton("Walk");
+        }
     }
 
     void Move()
     {
-        if (!isTalk1 && !isTalk2)
+        if (!isTalk1 && !isTalk2 && !isDead)
         {
             moveInput = new Vector2(hAxis, vAxis);
             isMove = moveInput.magnitude != 0;
@@ -175,28 +212,37 @@ public class HouseScene2_Player : MonoBehaviour
 
     void DieMotion()
     {
-        isDead = true;
-        DiePs.gameObject.SetActive(true);
-        dieCanvas.gameObject.SetActive(true);
-        anim.SetTrigger("isDead");
-        dieAudio.Play();
+        if (isDead)
+        {
+            DiePs.gameObject.SetActive(true);
+            dieCanvas.gameObject.SetActive(true);          
+            anim.SetTrigger("doDead");         
+            dieAudio.Play();
+            Invoke("ReLoadScene", 2f);
+        }
     }
 
     void ReLoadScene()
     {
-        isDead = false;
+        
         DeadCount.count++;
-
         if (isTalkEnd1)
         {
             rigid.MovePosition(ResPawnPos1);
+            
         }
-        else if (!isTalkEnd1)
+        else 
         {
             rigid.MovePosition(ResPawnPos2);
+            
         }
         DiePs.gameObject.SetActive(false);
         dieCanvas.gameObject.SetActive(false);
+        
+       
+        isDead = false;
+       
+        
     }
 
     void OnTriggerEnter(Collider other)
@@ -205,8 +251,13 @@ public class HouseScene2_Player : MonoBehaviour
         {
             isFallingObstacle = true;
         }
-
-        if(other.gameObject.name == "Portal")
+        if (!isDead && other.CompareTag("House2_Obstacle"))
+        {
+            isDead = true;
+            DieMotion();
+            
+        }
+        if (other.gameObject.name == "Portal")
         {
             portal.SetActive(false);
             windAudio.Play();
@@ -330,13 +381,14 @@ public class HouseScene2_Player : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("House2_Obstacle") && !isDead)
+       
+        if (!isDead && collision.gameObject.CompareTag("House2_Obstacle"))
         {
+
             isDead = true;
             DieMotion();
-            Invoke("ReLoadScene", 2f);
-        }
 
+        }
         if (collision.gameObject.CompareTag("Ground"))
         {
             isJump = false;
@@ -348,6 +400,7 @@ public class HouseScene2_Player : MonoBehaviour
         }
     }
 
+   
     public void LookAround() 
     {
         Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));

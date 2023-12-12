@@ -41,12 +41,15 @@ public class HouseScenePlayer : MonoBehaviour
     private float doorOpenDuration = 3.0f;
     private float doorRaiseSpeed = 0.8f;
     private bool shouldLookAround = false;
-    public GameManager gameManager;
+    public GameObject gameManager;
+    public GameManager_Easy gameManager_Easy;
+    public GameManager_Hard gameManager_Hard;
 
     public GameObject startDoor;
     public GameObject dieCanvas;
     public GameObject NextSceneImage;
     public bool isEnglish;
+    public bool isEasy;
 
     [Header("Dialogue")]
     public GameObject startCanvas1;
@@ -95,15 +98,27 @@ public class HouseScenePlayer : MonoBehaviour
         anim = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody>();
         isJump = false;
-        if (File.Exists("playerData.json"))
+        if (isEasy)
         {
-            
-            string jsonData = File.ReadAllText("playerData.json");
-            PlayerData loadedData = JsonUtility.FromJson<PlayerData>(jsonData);
-
-            isEnglish = loadedData.isEng;
-
+            gameManager_Easy = gameManager.GetComponent<GameManager_Easy>();
+            if (File.Exists("PlayerData_Easy.json"))
+            {
+                string jsonData = File.ReadAllText("PlayerData_Easy.json");
+                PlayerData loadedData = JsonUtility.FromJson<PlayerData>(jsonData);
+                isEnglish = loadedData.isEng;
+            }
         }
+        else
+        {
+            gameManager_Hard = gameManager.GetComponent<GameManager_Hard>();
+            if (File.Exists("PlayerData_Hard.json"))
+            {
+                string jsonData = File.ReadAllText("PlayerData_Hard.json");
+                PlayerData loadedData = JsonUtility.FromJson<PlayerData>(jsonData);
+                isEnglish = loadedData.isEng;
+            }
+        }
+       
     }
 
     void Start()
@@ -111,6 +126,7 @@ public class HouseScenePlayer : MonoBehaviour
         DiePs.gameObject.SetActive(false);
         StartCam.Priority = 10;
         MemoryCount.memCount = 0;
+       
     }
 
     void Update()
@@ -184,8 +200,13 @@ public class HouseScenePlayer : MonoBehaviour
                 isReadyDoorOpen = false;
             }
         }
+        if (isTalk)
+        {
+            anim.SetBool("Run", false);
+            anim.SetBool("Walk", false);
+        }
     }
-
+  
     void GetInput()
     {
         hAxis = Input.GetAxisRaw("Horizontal");
@@ -234,7 +255,6 @@ public class HouseScenePlayer : MonoBehaviour
             Invoke("remove_dieUI", 3f);
         }
     }
-
 
 
     private void HandleCameraRotation()
@@ -379,10 +399,14 @@ public class HouseScenePlayer : MonoBehaviour
     }
     void NextScene()
     {
-        LoadSceneInfo.isHouse_2 = true;
-        PlayerPrefs.SetInt("SceneHouse_2", LoadSceneInfo.isHouse_2 ? 1 : 0);
-        LoadSceneInfo.LevelCnt = 7;
-        SceneManager.LoadScene("LoadingScene");
+        if (isEasy)
+        {
+            LoadingSceneManager.LoadScene("HouseScene_2_Easy");
+        }
+        else
+        {
+            LoadingSceneManager.LoadScene("HouseScene_2_Hard");
+        }
     }
     void OnTriggerExit(Collider other)
     {

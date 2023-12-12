@@ -270,6 +270,13 @@ MonoBehaviour:
     m_Localized: Hard
     m_Metadata:
       m_Items: []
+  - m_Id: 32461238212341760
+    m_Localized: 'You. . . Stupid Chick. . .
+
+      Not. . . Hear. . . Try. . . Again.
+      . .'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
