@@ -111,7 +111,7 @@ public class CaveSceneTalkManager : MonoBehaviour
             isTyping = false;
         }
 
-        if (Input.GetMouseButton(0) || Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (!isTyping)
             {
@@ -122,6 +122,21 @@ public class CaveSceneTalkManager : MonoBehaviour
             }
         }
     }
+    public void OnClick()
+    {
+        if (!isTyping)
+        {
 
+            NextSentence();
+            ClickButtonSound.Play();
+            if (sentences.Count == 0)
+            {
+                NpcImage.SetActive(false);
+                PlayerImage.SetActive(false);
+            }
+            ChangeImage();
+
+        }
+    }
 
 }
