@@ -42,6 +42,8 @@ public class FactoryPlayer_2 : MonoBehaviour
 
     public GameObject spawnPos;
     public GameObject savePoint;
+    public ParticleSystem popPs_1;
+    public ParticleSystem popPs_2;
 
     [Header("UI")]
     public GameObject scene2LastUI;
@@ -130,7 +132,6 @@ public class FactoryPlayer_2 : MonoBehaviour
             transform.position += moveVec * speed * Time.deltaTime * 1f;
             anim.SetBool("isWalk", true);
 
-
         }
         else if (hAxis == 0 && vAxis == 0)
         {
@@ -204,11 +205,9 @@ public class FactoryPlayer_2 : MonoBehaviour
             mainCam.Priority = 1;
             dieCam.Priority = 2;
             Invoke("ExitCanvas", 2f);
-        }
-       
+        }      
 
     }
-
     public void ExitCanvas()
     {
        
@@ -234,7 +233,7 @@ public class FactoryPlayer_2 : MonoBehaviour
     }
     void Pos()
     {
-        if (isEasy && isSavePoint)
+        if (isSavePoint)
         {
             this.transform.position = savePoint.transform.position;
         }
@@ -248,34 +247,20 @@ public class FactoryPlayer_2 : MonoBehaviour
     {
         if (other.gameObject.name == "Rail")
         {
-            if (isEasy)
+
+            if (MemoryCount.memCount == 3)
             {
-                if (MemoryCount.memCount == 3)
-                {
-                    scene2LastUI.gameObject.SetActive(true);
-                    Invoke("RoadScene", 2f);
-                }
-                else if (MemoryCount.memCount < 3)
-                {
-                    memCountUI.gameObject.SetActive(true);
-                    Invoke("ExitCanvas", 1.5f);
-                }
+                scene2LastUI.gameObject.SetActive(true);
+                Invoke("RoadScene", 2f);
             }
-            else
+            else if (MemoryCount.memCount < 3)
             {
-                if (MemoryCount.memCount == 4)
-                {
-                    scene2LastUI.gameObject.SetActive(true);
-                    Invoke("RoadScene", 2f);
-                }
-                else if (MemoryCount.memCount < 4)
-                {
-                    memCountUI.gameObject.SetActive(true);
-                    Invoke("ExitCanvas", 1.5f);
-                }
+                memCountUI.gameObject.SetActive(true);
+                Invoke("ExitCanvas", 1.5f);
             }
+
         }
-        if (isEasy && other.CompareTag("SavePoint_1"))
+        if (other.CompareTag("SavePoint_1"))
         {
             isSavePoint = true;
             savePointAudio.Play();
@@ -283,7 +268,12 @@ public class FactoryPlayer_2 : MonoBehaviour
             savePointTxt.SetActive(true);
             Invoke("DestroySavePointTxt", 2f);
         }
-    
+        if (other.CompareTag("Item"))
+        {
+            popPs_1.Play();
+            popPs_2.Play();
+        }
+
     }
     void DestroySavePointTxt()
     {
@@ -330,9 +320,9 @@ public class FactoryPlayer_2 : MonoBehaviour
             this.gameObject.transform.Translate(Vector3.back * Time.deltaTime * 1f, Space.World);
 
         }
-        if (isEasy && other.CompareTag("Item"))
+        if (other.CompareTag("Item"))
         {
-            this.gameObject.transform.Translate(Vector3.forward * Time.deltaTime * 10f, Space.World);
+            this.gameObject.transform.Translate(Vector3.forward * Time.deltaTime * 15f, Space.World);
 
         }
     }

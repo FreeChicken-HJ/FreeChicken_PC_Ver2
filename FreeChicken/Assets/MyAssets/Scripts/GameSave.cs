@@ -119,7 +119,7 @@ public class GameSave : MonoBehaviour
             {
                 House.SetActive(true);
               
-                ShowParticle_1.Play();
+                ShowParticle_2.Play();
                 SetFile();
                 isChk = true;
             }
@@ -128,7 +128,7 @@ public class GameSave : MonoBehaviour
                 House.SetActive(true);
                 City.SetActive(true);
                 
-                ShowParticle_2.Play();
+                ShowParticle_3.Play();
                 SetFile();
                 isChk = true;
             }
@@ -138,7 +138,7 @@ public class GameSave : MonoBehaviour
                 City.SetActive(true);
                 Cave.SetActive(true);
                
-                ShowParticle_3.Play();
+                ShowParticle_4.Play();
                 SetFile();
                 isChk = true;
             }

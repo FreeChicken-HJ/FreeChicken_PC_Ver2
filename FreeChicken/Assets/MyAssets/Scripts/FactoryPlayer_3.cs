@@ -107,15 +107,16 @@ public class FactoryPlayer_3 : MonoBehaviour
         anim = GetComponent<Animator>();
         
         NPC = GameObject.FindWithTag("NPC");
+        MemoryCount.memCount = 3;
         if (isEasyVer)
         {
-            MemoryCount.memCount = 3;
+            
             gameManager_Easy = gameManager.GetComponent<GameManager_Easy>();
             
         }
         else
         {         
-            MemoryCount.memCount = 4;
+            
             gameManager_Hard = gameManager.GetComponent<GameManager_Hard>();
         }
     }
