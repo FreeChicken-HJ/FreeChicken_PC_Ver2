@@ -1285,6 +1285,7 @@ GameObject:
   - component: {fileID: 5713634359370681710}
   - component: {fileID: 7449142804493063536}
   - component: {fileID: 7201070359947631062}
+  - component: {fileID: 1681567504917554482}
   m_Layer: 0
   m_Name: Building_Stadium
   m_TagString: Untagged
@@ -1357,6 +1358,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1681567504917554482
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742781675266091294}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 36.24877, y: 25.434782, z: 89.82843}
+  m_Center: {x: -0.71611404, y: -1.0291243, z: 18.523453}
 --- !u!1 &771342406445274971
 GameObject:
   m_ObjectHideFlags: 0
@@ -2583,7 +2605,7 @@ GameObject:
   - component: {fileID: 7587327601259652731}
   - component: {fileID: 7700833779760615610}
   - component: {fileID: 7896525551977125257}
-  - component: {fileID: 3249923146752059924}
+  - component: {fileID: 6798103578539291413}
   m_Layer: 0
   m_Name: Road Intersection_01
   m_TagString: Floor
@@ -2656,8 +2678,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3249923146752059924
-MeshCollider:
+--- !u!65 &6798103578539291413
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2674,10 +2696,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: dd3c656fc0e01f746b07825c92b09beb, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 120.72641, y: 22.253513, z: 20.565176}
+  m_Center: {x: 1.4980927, y: 7.611374, z: -0.282588}
 --- !u!1 &2154254487384140016
 GameObject:
   m_ObjectHideFlags: 0
@@ -4952,8 +4973,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3780696195285299074}
   m_LocalRotation: {x: -0.17364825, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 1.84, z: 29.57}
-  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
+  m_LocalPosition: {x: 0, y: 1.74, z: 29.61}
+  m_LocalScale: {x: 0.5, y: 1.8138465, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3279231416329563458}
@@ -6846,6 +6867,7 @@ GameObject:
   - component: {fileID: 1756461041946538331}
   - component: {fileID: 8685678840692328034}
   - component: {fileID: 2673809319457001277}
+  - component: {fileID: 8894464064412679166}
   m_Layer: 0
   m_Name: Building_Residential_color01
   m_TagString: Untagged
@@ -6918,6 +6940,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8894464064412679166
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5664728267231719744}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 81.49055, y: 19.239717, z: 19.672064}
+  m_Center: {x: -32.6307, y: 9.619859, z: 3.5612266}
 --- !u!1 &5774418399739431681
 GameObject:
   m_ObjectHideFlags: 0

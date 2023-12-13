@@ -24,6 +24,7 @@ public class CityScenePlayer : MonoBehaviour
     public GameObject gameManager;
     public GameManager_Easy gameManager_Easy;
     public GameManager_Hard gameManager_Hard;
+    public GameObject deathUI;
    
     [Header("Bool")]
     public bool isLast;
@@ -51,6 +52,7 @@ public class CityScenePlayer : MonoBehaviour
     
     void Start()
     {
+        Cursor.visible = false;
         startAudio.Play();
         rigid = GetComponent<Rigidbody>();
         //diePs.gameObject.SetActive(false);
@@ -72,6 +74,7 @@ public class CityScenePlayer : MonoBehaviour
     void NewStart()
     {
         startUI.SetActive(false);
+        deathUI.SetActive(true);
         startAudio.Stop();
         bgm.Play();
         if (isEasy)
@@ -254,6 +257,7 @@ public class CityScenePlayer : MonoBehaviour
             anim_1.SetTrigger("doDie");
             anim_1.SetBool("isRun", false);
             rigid.isKinematic = true;
+            DeadCount.count++;
             if(!isAllStop) Invoke("ReLoadScene", 1f);
         }
     }
