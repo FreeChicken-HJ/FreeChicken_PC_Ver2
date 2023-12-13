@@ -13,6 +13,7 @@ public class LoadingSceneManager : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
         StartCoroutine(LoadScene());
         int ranSkyRange = Random.Range(0, newSkyBox.Length);
         RenderSettings.skybox = newSkyBox[ranSkyRange];
