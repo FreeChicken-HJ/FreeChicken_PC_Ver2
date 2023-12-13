@@ -44,6 +44,8 @@ public class GameManager_Easy : MonoBehaviour
     public GameObject ExitUI;
     public GameObject LoadingUI;
     public GameObject hideObj;
+    public GameObject hideMemCnt;
+    public GameObject hideDeathCnt;
 
     public LocaleManager LocaleManager;
 
@@ -103,7 +105,10 @@ public class GameManager_Easy : MonoBehaviour
                 factoryPlayer1.runAudio.Pause();
                 Time.timeScale = 0f;
                 factoryPlayer1.isUnActive = true;
-                
+                hideMemCnt.SetActive(false);
+                hideDeathCnt.SetActive(false);
+
+
             }
             else if(factoryPlayer2 != null)
             {
@@ -111,7 +116,9 @@ public class GameManager_Easy : MonoBehaviour
                 factoryPlayer2.BGM.Pause();
                 Time.timeScale = 0f;
                 factoryPlayer2.isUnActive = true;
-              
+                hideMemCnt.SetActive(false);
+                hideDeathCnt.SetActive(false);
+
             }
             else if(factoryPlayer3!=null)
             {
@@ -119,7 +126,9 @@ public class GameManager_Easy : MonoBehaviour
                 factoryPlayer3.BGM.Pause();
                 Time.timeScale = 0f;
                 factoryPlayer3.isUnActive = true;
-                
+                hideMemCnt.SetActive(false);
+                hideDeathCnt.SetActive(false);
+
             }
             else if(housePlayer1!=null)
             {
@@ -128,7 +137,9 @@ public class GameManager_Easy : MonoBehaviour
                 housePlayer1.runAudio.Pause();
                 Time.timeScale = 0f;
                 housePlayer1.isUnActive = true;
-               
+                hideMemCnt.SetActive(false);
+                hideDeathCnt.SetActive(false);
+
             }
             else if(housePlayer2!=null)
             {
@@ -136,7 +147,8 @@ public class GameManager_Easy : MonoBehaviour
                 housePlayer2.mainAudio.Pause();
                 housePlayer2.runAudio.Pause();
                 Time.timeScale = 0f;
-                housePlayer2.isUnActive = true;              
+                housePlayer2.isUnActive = true;
+                hideDeathCnt.SetActive(false);
             }
             else if(evolutionPlayer!=null)
             {
@@ -144,7 +156,8 @@ public class GameManager_Easy : MonoBehaviour
                 evolutionPlayer.mainAudio.Pause();
                 evolutionPlayer.runAudio.Pause();
                 Time.timeScale = 0f;
-                evolutionPlayer.isTalk2 = true;              
+                evolutionPlayer.isTalk2 = true;
+                hideDeathCnt.SetActive(false);
             }
             else if(cityPlayer!=null)
             {
@@ -152,7 +165,8 @@ public class GameManager_Easy : MonoBehaviour
                 cityPlayer.bgm.Pause();
                 cityPlayer.startAudio.Pause();
                 Time.timeScale = 0f;
-                cityPlayer.isAllStop= true;              
+                cityPlayer.isAllStop= true;
+                hideDeathCnt.SetActive(false);
             }
             else if(cavePlayer!=null)
             {
@@ -160,6 +174,7 @@ public class GameManager_Easy : MonoBehaviour
                 cavePlayer.mainAudio.Pause();
                 Time.timeScale = 0f;
                 cavePlayer.isUnActive = true;
+                hideDeathCnt.SetActive(false);
             }
             else if(isMain)
             {
@@ -197,18 +212,24 @@ public class GameManager_Easy : MonoBehaviour
             factoryPlayer1.mainAudio.UnPause();
             factoryPlayer1.runAudio.UnPause();
             factoryPlayer1.isUnActive = false;
+            hideMemCnt.SetActive(true);
+            hideDeathCnt.SetActive(true);
         }
         else if (isFactory_2 && factoryPlayer2 != null)
         {
             Cursor.visible = false;
             factoryPlayer2.BGM.UnPause();
             factoryPlayer2.isUnActive = false;
+            hideMemCnt.SetActive(true);
+            hideDeathCnt.SetActive(true);
         }
         else if (isFactory_3 && factoryPlayer3 != null)
         {
             Cursor.visible = false;
             factoryPlayer3.BGM.UnPause();
             factoryPlayer3.isUnActive = false;
+            hideMemCnt.SetActive(true);
+            hideDeathCnt.SetActive(true);
         }
         else if (isHouse_1 && housePlayer1 != null)
         {
@@ -216,13 +237,16 @@ public class GameManager_Easy : MonoBehaviour
             housePlayer1.mainAudio.UnPause();
             housePlayer1.runAudio.UnPause();
             housePlayer1.isUnActive = false;
+            hideMemCnt.SetActive(true);
+            hideDeathCnt.SetActive(true);
         }
         else if (isHouse_2 && housePlayer2 != null)
         {
             Cursor.visible = false;
             housePlayer2.mainAudio.UnPause();
             housePlayer2.runAudio.UnPause();
-            housePlayer2.isUnActive = false;            
+            housePlayer2.isUnActive = false;
+            hideDeathCnt.SetActive(true);
         }
         else if (isHouse_2 && evolutionPlayer != null)
         {
@@ -230,6 +254,7 @@ public class GameManager_Easy : MonoBehaviour
             evolutionPlayer.mainAudio.UnPause();
             evolutionPlayer.runAudio.UnPause();
             evolutionPlayer.isUnActive = false;
+            hideDeathCnt.SetActive(true);
         }
         else if (isCity && cityPlayer != null)
         {
@@ -237,12 +262,14 @@ public class GameManager_Easy : MonoBehaviour
             cityPlayer.bgm.UnPause();
             cityPlayer.startAudio.UnPause();
             cityPlayer.isAllStop = false;
+            hideDeathCnt.SetActive(true);
         }
         else if (isCave && cavePlayer != null)
         {
             Cursor.visible = false;
             cavePlayer.mainAudio.UnPause();
             cavePlayer.isUnActive = false;
+            hideDeathCnt.SetActive(true);
         }
         else if (isMain)
         {

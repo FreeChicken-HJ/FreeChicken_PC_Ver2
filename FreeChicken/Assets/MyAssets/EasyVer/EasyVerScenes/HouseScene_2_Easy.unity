@@ -8051,6 +8051,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3079417195215471786, guid: 09af92dac87d43e48845852a6d1baa8c, type: 3}
   m_PrefabInstance: {fileID: 220070841}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &220070843 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2253227808664757292, guid: 09af92dac87d43e48845852a6d1baa8c, type: 3}
+  m_PrefabInstance: {fileID: 220070841}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &225230669
 GameObject:
   m_ObjectHideFlags: 0
@@ -8613,7 +8618,9 @@ MonoBehaviour:
   hAxis: 0
   vAxis: 0
   isMove: 0
+  isJump: 0
   isFallingObstacle: 0
+  isUnActive: 0
   player: {fileID: 254029496}
   dieCanvas: {fileID: 124008808}
   DiePs: {fileID: 806482468}
@@ -15228,7 +15235,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 419723465}
-  m_LocalRotation: {x: 0.20580924, y: 0.111984834, z: -0.02388527, w: 0.97187006}
+  m_LocalRotation: {x: 0.20580961, y: 0.11196967, z: -0.02388199, w: 0.97187185}
   m_LocalPosition: {x: 29.993488, y: 3.1588619, z: 35.80427}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -20081,7 +20088,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 455634176}
-  m_LocalRotation: {x: 0.0047672857, y: 0.98693424, z: -0.02972459, w: 0.1582864}
+  m_LocalRotation: {x: 0.0047708103, y: 0.98691547, z: -0.029724043, w: 0.15840329}
   m_LocalPosition: {x: -1, y: -0.29999995, z: 7.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21224,7 +21231,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541722525}
-  m_LocalRotation: {x: 0.011675842, y: -0.45883945, z: 0.006030171, w: 0.8884221}
+  m_LocalRotation: {x: 0.01167513, y: -0.45894468, z: 0.0060315547, w: 0.8883677}
   m_LocalPosition: {x: 0.20372176, y: -0.86000025, z: 0.46302056}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21563,6 +21570,7 @@ MonoBehaviour:
   TalkUI1: {fileID: 781849220}
   TalkUI2: {fileID: 1715596070}
   isFin: 0
+  isEButtonFin: 0
   Wall: {fileID: 225790664}
   gameManager: {fileID: 1164633459}
   gameManager_Easy: {fileID: 0}
@@ -28344,8 +28352,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e301fa393c57f547a157cab7468964a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuSet: {fileID: 4413912376557105974}
-  ClickButtonAudio: {fileID: 1912565794}
   isStartScene: 0
   isFactory_1: 0
   isFactory_2: 0
@@ -28360,6 +28366,8 @@ MonoBehaviour:
   isEnglish: 0
   is2D: 0
   isEasyVer: 1
+  menuSet: {fileID: 4413912376557105974}
+  ClickButtonAudio: {fileID: 1912565794}
   MainBGM: {fileID: 1704951704}
   SFX: {fileID: 0}
   mainUI: {fileID: 0}
@@ -28368,6 +28376,9 @@ MonoBehaviour:
   WarnningUI: {fileID: 0}
   ExitUI: {fileID: 0}
   LoadingUI: {fileID: 0}
+  hideObj: {fileID: 0}
+  hideMemCnt: {fileID: 0}
+  hideDeathCnt: {fileID: 220070843}
   LocaleManager: {fileID: 0}
 --- !u!4 &1164633461
 Transform:
