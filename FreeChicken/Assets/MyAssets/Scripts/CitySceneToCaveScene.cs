@@ -32,9 +32,8 @@ public class CitySceneToCaveScene : MonoBehaviour
             
             if (isContact)
             {
-                
-                endCam.Priority = 2;
-                CarSound.Play();
+               
+                endCam.Priority = 2;              
                 player.gameObject.transform.position = pos.transform.position;
                 player.anim_2.SetBool("isRun",false);
                 this.gameObject.transform.Translate(Vector3.forward * Time.deltaTime * 4f, Space.World);
@@ -72,6 +71,7 @@ public class CitySceneToCaveScene : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             isContact = true;
+            CarSound.Play();
         }
     }
 }

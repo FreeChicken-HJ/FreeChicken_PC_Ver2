@@ -14,6 +14,9 @@
 1. Factory_123 Scene Hard,Easy 전체 수정(o)
 2. Start & Ending Scene 전체 수정(o)
 3. 2DEnterScene 수정 (o)
-4. 2DEnterScene Easy & Hard 설정 필
-5. FileSystem 수정 ( Easy & Hard File 따로 설정) & 코드 전면 수정 필
+4. 2DEnterScene Easy & Hard 설정 필(o)
+5. FileSystem 수정 ( Easy & Hard File 따로 설정) & 코드 전면 수정 필 (o)
    5-1. LoadSceneInfo 함수 전면 수정 필 (최적화)
+------------
+6. PC QA 하면서 오류 고치기
+7. Mobile 수정 진행하기
