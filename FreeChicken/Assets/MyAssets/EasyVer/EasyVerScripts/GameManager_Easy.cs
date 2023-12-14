@@ -90,6 +90,10 @@ public class GameManager_Easy : MonoBehaviour
                 LocaleManager.ChangeLocale(1);
             }
         }
+        if (isMain)
+        {
+            Cursor.visible = true;
+        }
     }
    
     void Update()

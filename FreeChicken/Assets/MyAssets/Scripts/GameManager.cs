@@ -90,6 +90,10 @@ public class GameManager : MonoBehaviour
                 LocaleManager.ChangeLocale(1);
             }
         }
+        if (isStart)
+        {
+            Cursor.visible = true;
+        }
     }
 
     public void SetKorean()

@@ -97,6 +97,10 @@ public class GameManager_Hard: MonoBehaviour
                 LocaleManager.ChangeLocale(1);
             }
         }
+        if (isMain)
+        {
+            Cursor.visible = true;
+        }
     }
    
     void Update()
