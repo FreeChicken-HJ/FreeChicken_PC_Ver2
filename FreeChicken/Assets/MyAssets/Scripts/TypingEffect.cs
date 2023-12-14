@@ -14,7 +14,7 @@ public class TypingEffect : MonoBehaviour
     public List<string> dialogueList2;
     private int currentDialogueIndex = 0;
 
-    public float fadeDuration = 1.0f;
+    public float fadeDuration = 0.5f;
     public float initialDelay = 2.0f; 
     public string nextSceneName;
 
@@ -24,6 +24,7 @@ public class TypingEffect : MonoBehaviour
    
     private void Start()
     {
+        
         Cursor.visible = true;
         canvasGroup.alpha = 1f;
         if (dialogueList1.Count > 0 && !PlayerData.isEnglish)
@@ -76,9 +77,11 @@ public class TypingEffect : MonoBehaviour
             waitForClick = true; 
             while (waitForClick)
             {
-                if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0))
+               
+                if (Input.GetMouseButton(0) || Input.GetKeyDown(KeyCode.Space))
                 {
                     ButtonClickSound.Play();
+                    //yield return new WaitForSeconds(0.1f);
                     waitForClick = false;
                     break;
 
@@ -114,9 +117,11 @@ public class TypingEffect : MonoBehaviour
             waitForClick = true;
             while (waitForClick)
             {
-                if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0))
+               
+                if (Input.GetMouseButton(0) || Input.GetKeyDown(KeyCode.Space))
                 {
                     ButtonClickSound.Play();
+                    //yield return new WaitForSeconds(0.1f);
                     waitForClick = false;
                     break;
 
@@ -141,17 +146,19 @@ public class TypingEffect : MonoBehaviour
     private IEnumerator FadeOutAndLoadScene()
     {
         float elapsedTime = 0f;
+       
         while (elapsedTime < fadeDuration)
         {
             canvasGroup.alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+       
         canvasGroup.alpha = 0f;
         Cursor.visible = false;
         BGM.Stop();
-        
-        Invoke("StartScene", 2f);
+        StartScene();
+
     }
     void StartScene()
     {

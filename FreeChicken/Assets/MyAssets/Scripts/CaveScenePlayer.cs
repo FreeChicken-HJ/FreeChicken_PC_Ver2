@@ -127,11 +127,13 @@ public class CaveScenePlayer : MonoBehaviour
     public GameObject SavePoint2Obj;
     public GameObject SavePoint3Obj;
     public GameObject SavePoint4Obj;
+    public GameObject SavePoint5Obj;
     public bool check_savepoint0;
     public bool check_savepoint1;
     public bool check_savepoint2;
     public bool check_savepoint3;
     public bool check_savepoint4;
+    public bool check_savepoint5;
 
     [Header("Audio")]
     public AudioSource savePointAudio;
@@ -248,7 +250,7 @@ public class CaveScenePlayer : MonoBehaviour
             StartCoroutine(NpcDadDestroy(Daddy2));
 
         }
-        if (!isUnActive && isTimerChk) // 시간이 다됐고 아무도 못나갓을때
+        if (!isUnActive && isTimerChk) 
         {
             if (cnt.isFin)
             {
@@ -282,7 +284,7 @@ public class CaveScenePlayer : MonoBehaviour
         transform.position += moveVec * speed * (wDown ? 0.3f : 1f) * Time.deltaTime;
         transform.position += moveVec * speed * (Dash ? 2.5f : 1f) * Time.deltaTime;
         runAudio.Play();
-        transform.LookAt(transform.position + moveVec); // 회전
+        transform.LookAt(transform.position + moveVec);
 
         anim.SetBool("isRun", moveVec != Vector3.zero);
         anim.SetBool("isWalk", wDown);
@@ -365,9 +367,13 @@ public class CaveScenePlayer : MonoBehaviour
                 DieMotion();
                 Invoke("restart_stage4", 3f);
             }
+            else if (check_savepoint5)
+            {
+                DieMotion();
+                Invoke("restart_stage5", 3f);
+            }
             else
             {
-
 
                 DieMotion();
                 Invoke("restart_stage0", 3f);
@@ -411,6 +417,11 @@ public class CaveScenePlayer : MonoBehaviour
             {
                 DieMotion();
                 Invoke("restart_stage4", 3f);
+            }
+            else if (check_savepoint5)
+            {
+                DieMotion();
+                Invoke("restart_stage5", 3f);
             }
             else /*if (check_savepoint0)*/
             {
@@ -471,14 +482,14 @@ public class CaveScenePlayer : MonoBehaviour
             StartRotation();
         }
 
-        if (other.gameObject.tag == "SenseTest")
+     /*   if (other.gameObject.CompareTag("SenseTest"))
         {
            
             isSenseTest = true;
            
-        }
+        }*/
 
-        if (other.tag == "DropBox")
+        if (other.CompareTag("DropBox"))
         {
             fallingAudio.Play();
             isfallingObstacle = true;
@@ -491,14 +502,14 @@ public class CaveScenePlayer : MonoBehaviour
         }
 
 
-        if (other.gameObject.tag == "Door" && !isMoveUp)
+        if (other.gameObject.CompareTag("Door") && !isMoveUp)
         {
             other.gameObject.transform.position = new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y + 3f, other.gameObject.transform.position.z);
         }
 
        
 
-        if (other.gameObject.tag == "NPC1" && !Talk_NPC1)
+        if (other.gameObject.CompareTag("NPC1") && !Talk_NPC1)
         {
             image1.SetActive(true);
            
@@ -521,7 +532,7 @@ public class CaveScenePlayer : MonoBehaviour
             Talk_NPC1 = true;
         }
 
-        if (other.gameObject.tag == "NPC2" && !Talk_NPC2)
+        if (other.gameObject.CompareTag("NPC2") && !Talk_NPC2)
         {
             image2.SetActive(true);
             TalkAudio.Play();
@@ -541,7 +552,7 @@ public class CaveScenePlayer : MonoBehaviour
            
         }
 
-        if (other.gameObject.tag == "NPC3" && !Talk_NPC3)
+        if (other.gameObject.CompareTag("NPC3") && !Talk_NPC3)
         {
             image3.SetActive(true);
 
@@ -564,7 +575,7 @@ public class CaveScenePlayer : MonoBehaviour
             Talk_NPC3 = true;
         }
 
-        if (other.gameObject.tag == "NPC4" && !Talk_NPC4)
+        if (other.gameObject.CompareTag("NPC4") && !Talk_NPC4)
         {
             image4.SetActive(true);
             NPC4Cam.Priority = 10;
@@ -586,7 +597,7 @@ public class CaveScenePlayer : MonoBehaviour
             Talk_NPC4 = true;
         }
 
-        if (other.gameObject.tag == "NPC5" && !Talk_NPC5)
+        if (other.gameObject.CompareTag("NPC5") && !Talk_NPC5)
         {
             image5.SetActive(true);
             MomCam.Priority = 10;
@@ -604,7 +615,7 @@ public class CaveScenePlayer : MonoBehaviour
             Talk_NPC5 = true;
         }
 
-        if (other.gameObject.tag == "TogetherSense" && !isTimerChk)
+        if (other.gameObject.CompareTag("TogetherSense") && !isTimerChk)
         {
             TogetherCam.Priority = 10;
             mainCam.Priority = 0;
@@ -613,7 +624,7 @@ public class CaveScenePlayer : MonoBehaviour
             TimerUI.SetActive(true);
         }
 
-        if(other.gameObject.tag == "TogetherSenseOut" && !isChk && isTimerChk)
+        if(other.gameObject.CompareTag("TogetherSenseOut") && !isChk && isTimerChk)
         {
             TogetherCam.Priority = 0;
             mainCam.Priority = 10;
@@ -624,7 +635,7 @@ public class CaveScenePlayer : MonoBehaviour
             Invoke("DeadCheck", 3f);
         }
 
-        if(other.gameObject.tag == "SenseOut")
+        if(other.gameObject.CompareTag("SenseOut"))
         {
             mainCam2.Priority = 0;
             mainCam.Priority = 10;
@@ -656,67 +667,82 @@ public class CaveScenePlayer : MonoBehaviour
             check_savepoint2 = false;
             check_savepoint3 = false;
             check_savepoint4 = false;
-           
+            check_savepoint5 = false;
+
         }
 
-        if (other.gameObject.tag == "SavePoint1")
+        if (other.gameObject.CompareTag("SavePoint1"))
         {
             check_savepoint1 = true;
             check_savepoint0 = false;
             check_savepoint2 = false;
             check_savepoint3 = false;
             check_savepoint4 = false;
+            check_savepoint5 = false;
             savePointAudio.Play();
             StartCoroutine("GetSavePointImage");
             Invoke("Destroy_SavePointObj1", 1.5f);
             Invoke("Destroy_SavePointImage", 2f);
         }
 
-        if (other.gameObject.tag == "SavePoint2")
+        if (other.gameObject.CompareTag("SavePoint2"))
         {
             check_savepoint2 = true;
             check_savepoint0 = false;
             check_savepoint1 = false;
             check_savepoint3 = false;
             check_savepoint4 = false;
+            check_savepoint5 = false;
             savePointAudio.Play();
             StartCoroutine("GetSavePointImage");
             Invoke("Destroy_SavePointObj2", 1.5f);
             Invoke("Destroy_SavePointImage", 2f);
         }
 
-        if (other.gameObject.tag == "SavePoint3")
+        if (other.gameObject.CompareTag("SavePoint3"))
         {
             check_savepoint3 = true;
             check_savepoint0 = false;
             check_savepoint1 = false;
             check_savepoint2 = false;
             check_savepoint4 = false;
+            check_savepoint5 = false;
             savePointAudio.Play();
             StartCoroutine("GetSavePointImage");
             Invoke("Destroy_SavePointObj3", 1.5f);
             Invoke("Destroy_SavePointImage", 2f);
         }
 
-        if (other.gameObject.tag == "SavePoint4")
+        if (other.gameObject.CompareTag("SavePoint4"))
         {
             check_savepoint4 = true;
             check_savepoint0 = false;
             check_savepoint1 = false;
             check_savepoint2 = false;
             check_savepoint3 = false;
+            check_savepoint5 = false;
             savePointAudio.Play();
             StartCoroutine("GetSavePointImage");
             Invoke("Destroy_SavePointObj4", 1.5f);
             Invoke("Destroy_SavePointImage", 2f);
         }
 
-        if(other.gameObject.name == "FinalPoint")
+        if (other.gameObject.CompareTag("SavePoint5"))
         {
-           /* LoadSceneInfo.isEndScene = true;
-            PlayerPrefs.SetInt("SceneEnd", LoadSceneInfo.isEndScene ? 1 : 0);
-            LoadSceneInfo.LevelCnt = 10;
-            SceneManager.LoadScene("LoadingScene");*/
+            check_savepoint5 = true;
+            check_savepoint4 = false;
+            check_savepoint0 = false;
+            check_savepoint1 = false;
+            check_savepoint2 = false;
+            check_savepoint3 = false;
+            savePointAudio.Play();
+            StartCoroutine("GetSavePointImage");
+            Invoke("Destroy_SavePointObj5", 1.5f);
+            Invoke("Destroy_SavePointImage", 2f);
+        }
+        if (other.gameObject.name == "FinalPoint")
+        {          
+            LoadingSceneManager.LoadScene("EndingScene");
         }
 
       
@@ -752,7 +778,7 @@ public class CaveScenePlayer : MonoBehaviour
     }
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "NPC1")
+        if (other.gameObject.CompareTag("NPC1"))
         {
             TalkAudio.Pause();
             FDadTalkCam.Priority = 1;
@@ -761,21 +787,21 @@ public class CaveScenePlayer : MonoBehaviour
 
        
 
-        if (other.gameObject.tag == "NPC3")
+        if (other.gameObject.CompareTag("NPC3"))
         {
             NPC3Cam.Priority = 1;
             mainCam.Priority = 10;
             TalkAudio.Pause();
         }
 
-        if (other.gameObject.tag == "NPC4")
+        if (other.gameObject.CompareTag("NPC4"))
         {
             NPC4Cam.Priority = 1;
             mainCam.Priority = 10;
             TalkAudio.Pause();
         }
 
-        if (other.gameObject.tag == "NPC5" && !isMomContact &&!isTalk)
+        if (other.gameObject.CompareTag("NPC5") && !isMomContact &&!isTalk)
         {
 
             
@@ -888,7 +914,10 @@ public class CaveScenePlayer : MonoBehaviour
     {
         SavePoint4Obj.gameObject.SetActive(false);
     }
-
+    void Destroy_SavePointObj5()
+    {
+        SavePoint5Obj.gameObject.SetActive(false);
+    }
     //------------restart_stage-----------------------------------------
     void restart_stage0()
     {
@@ -921,7 +950,11 @@ public class CaveScenePlayer : MonoBehaviour
         Dead = false;
         this.transform.position = SavePoint4Obj.transform.position;
     }
-
+    void restart_stage5()
+    {
+        Dead = false;
+        this.transform.position = SavePoint5Obj.transform.position;
+    }
     void remove_dieUI()
     {
         DiePs.gameObject.SetActive(false);
