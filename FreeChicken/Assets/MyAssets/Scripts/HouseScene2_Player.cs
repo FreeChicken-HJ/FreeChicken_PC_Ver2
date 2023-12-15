@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 using Cinemachine;
+using System.ComponentModel;
 //using UnityEngine.UIElements;
 
 public class HouseScene2_Player : MonoBehaviour
@@ -26,6 +27,7 @@ public class HouseScene2_Player : MonoBehaviour
     public bool isFallingObstacle;
     bool isDead;
     public bool isUnActive;
+
     [Header("GameObject")]
     public GameObject player;
     public GameObject dieCanvas;
@@ -71,7 +73,6 @@ public class HouseScene2_Player : MonoBehaviour
     public bool isTalk2;
     public bool isTalkEnd2;
 
-
     [Header("Evloution")]
     private bool isRotating = false;
     private Quaternion originalCameraRotation;
@@ -91,33 +92,8 @@ public class HouseScene2_Player : MonoBehaviour
         Cursor.visible = false;
         DiePs.gameObject.SetActive(false);
         dieCanvas.gameObject.SetActive(false);
-       
     }
-   
-   /* IEnumerator CO_notDead()
-    {
-        while (true)
-        {
-            if (!isDead)
-            {
-                if (!isTalk1 || !isTalk2)
-                {
-                    if (isRotating)
-                    {
-                        HandleCameraRotation();
-                    }
-                    else
-                    {
-                        Move();
-                        LookAround();
-                        GetInput();
-                        Jump();
-                    }
-                }
-            }
-            yield return null;
-        }
-    }*/
+
     private void Update()
     {
         if (!isDead && !isUnActive)
@@ -146,22 +122,11 @@ public class HouseScene2_Player : MonoBehaviour
             vAxis = 0;
             wDown = false;
         }
-       
-    }
-   /* IEnumerator CO_Dead()
-    {
-        while (true)
+        if (this.transform.position.y < -3f && !isDead)
         {
-            if (!isDead && this.transform.position.y <= -100f )
-            {
-                isDead = true;
-                DieMotion();
-                //Invoke("ReLoadScene", 2f);
-            }
-            
-            yield return null;
+            DieMotion();
         }
-    }*/
+    }
 
     void GetInput()
     {
@@ -220,25 +185,19 @@ public class HouseScene2_Player : MonoBehaviour
 
     void ReLoadScene()
     {
-        
         DeadCount.count++;
         if (isTalkEnd1)
         {
             rigid.MovePosition(ResPawnPos1);
-            
         }
         else 
         {
             rigid.MovePosition(ResPawnPos2);
-            
         }
         DiePs.gameObject.SetActive(false);
         dieCanvas.gameObject.SetActive(false);
-        
-       
+          
         isDead = false;
-       
-        
     }
 
     void OnTriggerEnter(Collider other)
@@ -251,14 +210,12 @@ public class HouseScene2_Player : MonoBehaviour
         {
             isDead = true;
             DieMotion();
-            
         }
         if (other.gameObject.name == "Portal")
         {
             portal.SetActive(false);
             windAudio.Play();
         }
-
         if (other.gameObject.CompareTag("NPC") && !isTalk1 && !isTalkEnd1 && !PlayerData.isEnglish)
         {
             isTalk1 = true;
@@ -270,7 +227,6 @@ public class HouseScene2_Player : MonoBehaviour
             npc_cam.Priority = 10;
             mainCam.Priority = 1;
         }
-
         if (other.gameObject.CompareTag("NPC") && !isTalk1 && !isTalkEnd1 && PlayerData.isEnglish)
         {
             isTalk1 = true;
@@ -282,7 +238,6 @@ public class HouseScene2_Player : MonoBehaviour
             npc_cam.Priority = 10;
             mainCam.Priority = 1;
         }
-
         if (other.gameObject.name == "Unicycle_Sense" && !isTalk2 && !isTalkEnd2 && !PlayerData.isEnglish)
         {
             isTalk2 = true;
@@ -295,7 +250,6 @@ public class HouseScene2_Player : MonoBehaviour
             mainCam.Priority = 1;
             Invoke("UnicycleObj_Destroy", 1.5f);
         }
-
         if (other.gameObject.name == "Unicycle_Sense" && !isTalk2 && !isTalkEnd2 && PlayerData.isEnglish)
         {
             isTalk2 = true;
@@ -308,7 +262,6 @@ public class HouseScene2_Player : MonoBehaviour
             mainCam.Priority = 1;
             Invoke("UnicycleObj_Destroy", 1.5f);
         }
-
         if (other.gameObject.name == "EvolutionSense1")
         {
             trumpetAudio.Play();
@@ -337,7 +290,6 @@ public class HouseScene2_Player : MonoBehaviour
             cameraArm.RotateAround(transform.position, Vector3.up, rotationAngle * Time.deltaTime);
             evoluPs.SetActive(true);
         }
-
         if (rotationTimer >= rotationDuration)
         {
             rotationTimer = 0.0f;
@@ -368,7 +320,6 @@ public class HouseScene2_Player : MonoBehaviour
 
             isTalkEnd1 = true;
         }
-
         if (other.gameObject.name == "Unicycle_Sense")
         {
             isTalkEnd2 = true;
@@ -377,13 +328,11 @@ public class HouseScene2_Player : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-       
         if (!isDead && collision.gameObject.CompareTag("House2_Obstacle"))
         {
 
             isDead = true;
             DieMotion();
-
         }
         if (collision.gameObject.CompareTag("Ground"))
         {
@@ -396,7 +345,6 @@ public class HouseScene2_Player : MonoBehaviour
         }
     }
 
-   
     public void LookAround() 
     {
         Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));

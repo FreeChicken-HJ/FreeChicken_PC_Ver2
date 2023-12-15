@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
-        
+        Cursor.visible = true;
         Invoke("FamGO", 3f);
         Invoke("StartCam", .5f);
         BGM.Play();

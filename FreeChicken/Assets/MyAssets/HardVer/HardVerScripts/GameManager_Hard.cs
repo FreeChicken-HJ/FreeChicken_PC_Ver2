@@ -181,6 +181,10 @@ public class GameManager_Hard: MonoBehaviour
                 Time.timeScale = 0f;
                 cavePlayer.isUnActive = true;
                 hideDeathCnt.SetActive(false);
+                if (cavePlayer.isTimerChk || !cavePlayer.isTimerChk)
+                {
+                    cavePlayer.countDownSound.Pause();
+                }
             }
             else if (isMain)
             {
@@ -265,6 +269,10 @@ public class GameManager_Hard: MonoBehaviour
             cavePlayer.mainAudio.UnPause();
             cavePlayer.isUnActive = false;
             hideDeathCnt.SetActive(true);
+            if (cavePlayer.isTimerChk)
+            {
+                cavePlayer.countDownSound.UnPause();
+            }
         }
         else if (isMain)
         {
