@@ -64,6 +64,7 @@ public class FactoryPlayer_2 : MonoBehaviour
     public AudioSource dieAudio;
     public AudioSource changeConAudio;
     public AudioSource savePointAudio;
+    public AudioSource bombAudio;
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
@@ -272,6 +273,7 @@ public class FactoryPlayer_2 : MonoBehaviour
         {
             popPs_1.Play();
             popPs_2.Play();
+            bombAudio.Play();
         }
 
     }
