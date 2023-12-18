@@ -64,6 +64,7 @@ public class CaveScenePlayer : MonoBehaviour
     public bool isLastUI;
     public bool isFire;
     public bool isUnActive;
+    public bool isEasy;
     [Header("Camera")]
     
     public CinemachineVirtualCamera mainCam;
@@ -268,7 +269,7 @@ public class CaveScenePlayer : MonoBehaviour
         moveVec = new Vector3(hAxis, 0, vAxis).normalized;
         
         transform.position += moveVec * speed * (wDown ? 0.3f : 1f) * Time.deltaTime;
-        transform.position += moveVec * speed * (Dash ? 2.5f : 1f) * Time.deltaTime;
+        transform.position += moveVec * speed * (Dash ? 2f : 1f) * Time.deltaTime;
         runAudio.Play();
         transform.LookAt(transform.position + moveVec);
 
@@ -786,7 +787,14 @@ public class CaveScenePlayer : MonoBehaviour
         isChk = false;
         cnt.isFin = false;
         BombParticle.SetActive(false);
-        cnt.CountValue = 20;
+        if(isEasy)
+        {
+            cnt.CountValue = 20;
+        }
+        else if(!isEasy)
+        {
+            cnt.CountValue = 15;
+        }
         isTimerChk = false;
         this.gameObject.transform.position = ReStartZone.transform.position;
         Dad.gameObject.transform.position = DadReStartZone.transform.position;

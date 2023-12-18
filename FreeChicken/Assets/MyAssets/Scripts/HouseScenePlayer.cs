@@ -44,6 +44,7 @@ public class HouseScenePlayer : MonoBehaviour
     public GameObject gameManager;
     public GameManager_Easy gameManager_Easy;
     public GameManager_Hard gameManager_Hard;
+    public GameObject hideObj;
 
     public GameObject startDoor;
     public GameObject dieCanvas;
@@ -249,6 +250,7 @@ public class HouseScenePlayer : MonoBehaviour
             dieAudio.Play();
             anim.SetBool("isDead",true);
             Invoke("remove_dieUI", 3f);
+            hideObj.SetActive(true);
         }
     }
 
@@ -486,6 +488,11 @@ public class HouseScenePlayer : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isJump = false;
+        }
+
+        if(collision.gameObject.name == "GiftBox")
+        {
+            hideObj.SetActive(false);
         }
     }
 
