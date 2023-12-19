@@ -45,6 +45,7 @@ public class HouseScenePlayer : MonoBehaviour
     public GameManager_Easy gameManager_Easy;
     public GameManager_Hard gameManager_Hard;
     public GameObject hideObj;
+    public GameObject hideObj1;
 
     public GameObject startDoor;
     public GameObject dieCanvas;
@@ -493,6 +494,7 @@ public class HouseScenePlayer : MonoBehaviour
         if(collision.gameObject.name == "GiftBox")
         {
             hideObj.SetActive(false);
+            hideObj1.SetActive(false);
         }
     }
 

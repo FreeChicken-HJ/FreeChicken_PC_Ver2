@@ -1096,6 +1096,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.78037935, y: 2.500002, z: 0.24158031}
   m_Center: {x: -0.8598118, y: 1.250001, z: -0.0005737394}
+--- !u!1 &109751241 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3592402310384359069, guid: 955f9c0f0e24add47b4fd2d2f3d239d2, type: 3}
+  m_PrefabInstance: {fileID: 1573237139}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &119449167 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 362024468379106429, guid: 955f9c0f0e24add47b4fd2d2f3d239d2, type: 3}
@@ -10547,6 +10552,7 @@ MonoBehaviour:
   gameManager_Easy: {fileID: 0}
   gameManager_Hard: {fileID: 0}
   hideObj: {fileID: 1546290236}
+  hideObj1: {fileID: 109751241}
   startDoor: {fileID: 803540913}
   dieCanvas: {fileID: 1212194261272224878}
   NextSceneImage: {fileID: 2109328041}
@@ -20894,7 +20900,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669487602}
-  m_LocalRotation: {x: 0.1891075, y: -0.000000008447959, z: 0.000000001626928, w: 0.9819564}
+  m_LocalRotation: {x: 0.1891075, y: 0.000000008447957, z: -0.0000000016269277, w: 0.9819564}
   m_LocalPosition: {x: 0, y: -0.9, z: 2.2000008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -35439,6 +35445,10 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3592402310384359069, guid: 955f9c0f0e24add47b4fd2d2f3d239d2, type: 3}
+      propertyPath: m_Name
+      value: ChristmasTree1
+      objectReference: {fileID: 0}
     - target: {fileID: 3636494815298748252, guid: 955f9c0f0e24add47b4fd2d2f3d239d2, type: 3}
       propertyPath: m_Convex
       value: 0
@@ -36605,6 +36615,10 @@ PrefabInstance:
     - {fileID: 460431993594365631, guid: 955f9c0f0e24add47b4fd2d2f3d239d2, type: 3}
     - {fileID: 5722703354743650993, guid: 955f9c0f0e24add47b4fd2d2f3d239d2, type: 3}
     - {fileID: 8893415327354848442, guid: 955f9c0f0e24add47b4fd2d2f3d239d2, type: 3}
+    - {fileID: 4968653731092328548, guid: 955f9c0f0e24add47b4fd2d2f3d239d2, type: 3}
+    - {fileID: 7044828076413827847, guid: 955f9c0f0e24add47b4fd2d2f3d239d2, type: 3}
+    - {fileID: 4080595935111782220, guid: 955f9c0f0e24add47b4fd2d2f3d239d2, type: 3}
+    - {fileID: 4992584734304902844, guid: 955f9c0f0e24add47b4fd2d2f3d239d2, type: 3}
     m_RemovedGameObjects:
     - {fileID: 5725887765058818079, guid: 955f9c0f0e24add47b4fd2d2f3d239d2, type: 3}
     - {fileID: 3806470592136382770, guid: 955f9c0f0e24add47b4fd2d2f3d239d2, type: 3}
