@@ -155,7 +155,16 @@ public class FactoryPlayer_3 : MonoBehaviour
             Invoke("Finish", 2f);
             
         }
-        
+        if (isEbutton)
+        {
+            if (Input.GetButtonUp("E"))
+            {
+                t = 0;
+                OnTruck.value = 0;
+                EButton.color = Color.white;
+            }
+        }
+
     }
     void Finish()
     {
@@ -173,7 +182,7 @@ public class FactoryPlayer_3 : MonoBehaviour
         
     }
 
-        private void FixedUpdate()
+    private void FixedUpdate()
     {
         if (isEbutton)
         {
@@ -202,12 +211,7 @@ public class FactoryPlayer_3 : MonoBehaviour
                 
             }
 
-            if (Input.GetButtonUp("E"))
-            {
-                t = 0;
-                OnTruck.value = 0;
-                EButton.color = Color.white;
-            }
+         
         }
        
         
@@ -262,6 +266,17 @@ public class FactoryPlayer_3 : MonoBehaviour
 
         }
 
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Exit"))
+        {
+            ExitUI.gameObject.SetActive(false);
+            isEbutton = false;
+            t = 0;
+            OnTruck.value = 0;
+            EButton.color = Color.white;
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -351,6 +366,7 @@ public class FactoryPlayer_3 : MonoBehaviour
         {
             
             isDie = true;
+            if(isEbutton) { isEbutton = false; }
             anim.SetTrigger("doDie");
             anim.SetBool("isDie",true);
             mainCam.Priority = 1;
