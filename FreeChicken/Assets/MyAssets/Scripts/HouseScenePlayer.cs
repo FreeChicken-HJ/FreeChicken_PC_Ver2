@@ -252,6 +252,7 @@ public class HouseScenePlayer : MonoBehaviour
             anim.SetBool("isDead",true);
             Invoke("remove_dieUI", 3f);
             hideObj.SetActive(true);
+            hideObj1.SetActive(true);
         }
     }
 
