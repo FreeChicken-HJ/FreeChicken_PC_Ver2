@@ -8431,7 +8431,7 @@ PrefabInstance:
       objectReference: {fileID: 1470842606}
     - target: {fileID: 1050380024037320803, guid: 17a09d423219f824bba039eaed8819b8, type: 3}
       propertyPath: speed
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1050380024037320803, guid: 17a09d423219f824bba039eaed8819b8, type: 3}
       propertyPath: GoCity
@@ -8839,7 +8839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterBody: {fileID: 1803360706}
   cameraArm: {fileID: 847052365}
-  speed: 7
+  speed: 10
   jumpPower: 12
   hAxis: 0
   vAxis: 0
@@ -15380,7 +15380,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 419723465}
-  m_LocalRotation: {x: 0.2058095, y: 0.111973695, z: -0.023882864, w: 0.9718714}
+  m_LocalRotation: {x: 0.2058093, y: 0.111982085, z: -0.023884676, w: 0.9718704}
   m_LocalPosition: {x: 29.993488, y: 3.1588619, z: 35.80427}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -20233,7 +20233,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 455634176}
-  m_LocalRotation: {x: 0.004769879, y: 0.9869205, z: -0.029724218, w: 0.15837227}
+  m_LocalRotation: {x: 0.0047679194, y: 0.98693085, z: -0.029724464, w: 0.15830755}
   m_LocalPosition: {x: -1, y: -0.29999995, z: 7.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21376,7 +21376,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541722525}
-  m_LocalRotation: {x: 0.011675318, y: -0.45891672, z: 0.0060311863, w: 0.88838214}
+  m_LocalRotation: {x: 0.01167571, y: -0.45885846, z: 0.006030419, w: 0.88841224}
   m_LocalPosition: {x: 0.20372176, y: -0.86000025, z: 0.46302056}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -22186,8 +22186,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 22.772354, y: 8.62053, z: 1}
-  m_Center: {x: 2.1429253, y: 3.810264, z: 0}
+  m_Size: {x: 22.772354, y: 8.62053, z: 3.642355}
+  m_Center: {x: 2.1429253, y: 3.810264, z: 1.3211775}
 --- !u!4 &627026054
 Transform:
   m_ObjectHideFlags: 0
